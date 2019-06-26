@@ -2,8 +2,6 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -50,15 +48,9 @@ class User extends BaseUser
      */
     private $cv_filename;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Application", mappedBy="candidate", orphanRemoval=true)
-     */
-    private $applications;
-
     public function __construct()
     {
         parent::__construct();
-        $this->applications = new ArrayCollection();
         // your own logic
     }
 
@@ -130,37 +122,6 @@ class User extends BaseUser
     public function setCvFilename(string $cv_filename): self
     {
         $this->cv_filename = $cv_filename;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Application[]
-     */
-    public function getApplications(): Collection
-    {
-        return $this->applications;
-    }
-
-    public function addApplication(Application $application): self
-    {
-        if (!$this->applications->contains($application)) {
-            $this->applications[] = $application;
-            $application->setCandidate($this);
-        }
-
-        return $this;
-    }
-
-    public function removeApplication(Application $application): self
-    {
-        if ($this->applications->contains($application)) {
-            $this->applications->removeElement($application);
-            // set the owning side to null (unless already changed)
-            if ($application->getCandidate() === $this) {
-                $application->setCandidate(null);
-            }
-        }
 
         return $this;
     }
