@@ -23,6 +23,11 @@ class User extends BaseUser
     /**
      * @ORM\Column(type="string", length=50)
      */
+    private $name;
+
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
     private $address;
 
     /**
@@ -31,7 +36,8 @@ class User extends BaseUser
     private $postal_code;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\ManyToOne(targetEntity="App\Entity\City")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $city;
 
@@ -46,11 +52,6 @@ class User extends BaseUser
     private $picture_filename;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $cv_filename;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Job", mappedBy="employer", orphanRemoval=true)
      */
     private $jobs;
@@ -60,12 +61,29 @@ class User extends BaseUser
      */
     private $applications;
 
+    /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+     */
+    private $cv_filename;
+
     public function __construct()
     {
         parent::__construct();
         $this->jobs = new ArrayCollection();
         $this->applications = new ArrayCollection();
         // your own logic
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
     }
 
     public function getAddress(): ?string
@@ -92,12 +110,12 @@ class User extends BaseUser
         return $this;
     }
 
-    public function getCity(): ?string
+    public function getCity(): ?City
     {
         return $this->city;
     }
 
-    public function setCity(string $city): self
+    public function setCity(?City $city): self
     {
         $this->city = $city;
 
@@ -124,18 +142,6 @@ class User extends BaseUser
     public function setPictureFilename(?string $picture_filename): self
     {
         $this->picture_filename = $picture_filename;
-
-        return $this;
-    }
-
-    public function getCvFilename(): ?string
-    {
-        return $this->cv_filename;
-    }
-
-    public function setCvFilename(string $cv_filename): self
-    {
-        $this->cv_filename = $cv_filename;
 
         return $this;
     }
@@ -198,6 +204,18 @@ class User extends BaseUser
                 $application->setCandidate(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCvFilename(): ?string
+    {
+        return $this->cv_filename;
+    }
+
+    public function setCvFilename(?string $cv_filename): self
+    {
+        $this->cv_filename = $cv_filename;
 
         return $this;
     }
