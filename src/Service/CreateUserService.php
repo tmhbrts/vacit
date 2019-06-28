@@ -28,15 +28,12 @@ class CreateUserService
     if(!$u) {
       $user = $this->um->createUser();
 
-      $user->addRole($params["role"]);
-
       $user->setUsername($params["username"]);
       $user->setEmail($params["email"]);
       $user->setEnabled(true);
-
       $password = $this->encoder->encodePassword($user, $params["password"]);
       $user->setPassword($password);
-
+      $user->addRole($params["role"]);
       $user->setName($params["name"]);
       $user->setAddress($params["address"]);
       $user->setPostalCode($params["postal_code"]);
