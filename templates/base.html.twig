@@ -2,11 +2,17 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="assets/css/vacit-main.css">
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+      <header>
+        <div class="logo">[LOGO]</div>
+        <nav>
+          {% block buttons %}{% endblock %}
+        </nav>
+      </header>
+        {% block content %}{% endblock %}
+      <script type="text/javascript" src="assets/js/page.default.js"></script>
     </body>
 </html>

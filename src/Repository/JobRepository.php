@@ -19,6 +19,19 @@ class JobRepository extends ServiceEntityRepository
         parent::__construct($registry, Job::class);
     }
 
+    /**
+     * @return Job[] Returns an array of Job objects
+     */
+    public function findLatest($limit)
+    {
+        return $this->createQueryBuilder('j')
+            ->orderBy('j.date', 'DESC')
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Job[] Returns an array of Job objects
     //  */
