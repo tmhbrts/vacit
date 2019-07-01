@@ -9,6 +9,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\ArrayInput;
 
+use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
 use App\Service\CreateEmployerService;
@@ -34,34 +35,40 @@ class ImportEmployers extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-      $output->writeln([
-        'Employer Import',
-        '==============='
-      ]);
-      $inputFile = $input->getArgument('file');
-      $reader = IOFactory::createReaderForFile($inputFile);
-      $reader->setReadDataOnly(TRUE);
-      $spreadsheet = $reader->load($inputFile);
-      $data = $spreadsheet->getActiveSheet()
-                                ->toArray();
-      $firstRow = true;
-      foreach($data as $row) {
-        if($firstRow) { //first row contains the column headers
-          $keys = $row;
-          $firstRow = false;
-        } else {
+        $output->writeln([
+          'Employer Import',
+          '==============='
+        ]);
+        $inputFile = $input->getArgument('file');
+        $reader = IOFactory::createReaderForFile($inputFile);
+        $reader->setReadDataOnly(TRUE);
+
+        $spreadsheet = $reader->load($inputFile)
+                              ->getActiveSheet();
+
+        $highestRow = $spreadsheet->getHighestRow();
+        $highestCol = $spreadsheet->getHighestColumn();
+        $highestColIndex = Coordinate::columnIndexFromString($highestCol);
+
+        //the first row of the spreadsheet contains the indexes
+        $index = array();
+        for($i = 1; $i <= $highestColIndex; $i++) {
+          $index[$i] = $spreadsheet->getCellByColumnAndRow($i, 1)
+                                   ->getValue();
+          $output->writeln(dump($index[$i]));
+        }
+        for($i = 2; $i <= $highestRow; $i++) {
           $params = array();
-          $i = 0;
-          foreach($row as $value) {
-            $params[$keys[$i]] = $value;
-            $i++;
+          for($ii = 1; $ii <= $highestColIndex; $ii++) {
+            $value = $spreadsheet->getCellByColumnAndRow($ii, $i)
+                                 ->getValue();
+            $params[$index[$ii]] = $value;
           }
           $params["password"] = "password";
           $params["bio"] = " ";
-          $user = $this->es->createEmployer($params);
-          $output->writeln([$user]);
+          $employer = $this->es->createEmployer($params);
+          $output->writeln(dump($params));
         }
-      }
     }
 }
 
