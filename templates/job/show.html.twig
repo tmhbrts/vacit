@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}VAC!T - Vacaturesite voor IT{% endblock %}
+
+{% block content %}
+  <div class="job">
+    <h3>{{ job.level.level }} {{ job.title }}</h3>
+    <ul>
+      <li>{{ job.employer.name }}</li>
+      <li>{{ job.city.city }}</li>
+    </ul>
+  </div>
+{% endblock %}
