@@ -12,13 +12,13 @@ use Symfony\Component\Console\Input\ArrayInput;
 use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
-use App\Service\CreateEmployerService;
+use App\Service\EmployerService;
 
 class ImportEmployers extends Command
 {
     private $es;
 
-    public function __construct(CreateEmployerService $es)
+    public function __construct(EmployerService $es)
     {
         parent::__construct();
         $this->es = $es;

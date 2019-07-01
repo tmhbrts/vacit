@@ -7,7 +7,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use FOS\UserBundle\Model\UserManagerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-class CreateEmployerService
+class EmployerService
 {
   private $em;
   private $um;
