@@ -71,7 +71,7 @@ class User extends BaseUser
         parent::__construct();
         $this->jobs = new ArrayCollection();
         $this->applications = new ArrayCollection();
-        // your own logic
+        $this->addRole("ROLE_CANDIDATE");
     }
 
     public function getName(): ?string

@@ -7,7 +7,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use FOS\UserBundle\Model\UserManagerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-class CreateUserService
+class CreateEmployerService
 {
   private $em;
   private $um;
@@ -22,7 +22,7 @@ class CreateUserService
     $this->encoder = $encoder;
   }
 
-  public function createUser($params)
+  public function createEmployer($params)
   {
     $u = $this->um->findUserByEmail($params["email"]);
     if(!$u) {
@@ -33,7 +33,8 @@ class CreateUserService
       $user->setEnabled(true);
       $password = $this->encoder->encodePassword($user, $params["password"]);
       $user->setPassword($password);
-      $user->addRole($params["role"]);
+      $user->removeRole("ROLE_CANDIDATE");
+      $user->addRole("ROLE_EMPLOYER");
       $user->setName($params["name"]);
       $user->setAddress($params["address"]);
       $user->setPostalCode($params["postal_code"]);

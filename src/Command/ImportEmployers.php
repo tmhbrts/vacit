@@ -11,32 +11,32 @@ use Symfony\Component\Console\Input\ArrayInput;
 
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
-use App\Service\CreateUserService;
+use App\Service\CreateEmployerService;
 
-class ImportUsers extends Command
+class ImportEmployers extends Command
 {
-    private $us;
+    private $es;
 
-    public function __construct(CreateUserService $us)
+    public function __construct(CreateEmployerService $es)
     {
         parent::__construct();
-        $this->us = $us;
+        $this->es = $es;
     }
 
     protected function configure()
     {
         $this
-          ->setName('app:import-users')
-          ->setDescription('Import users from file')
-          ->setHelp('This command allows you to import users from a spreadsheet')
+          ->setName('app:import-employers')
+          ->setDescription('Import employers from file')
+          ->setHelp('This command allows you to import employers from a spreadsheet')
           ->addArgument('file', InputArgument::REQUIRED, 'File location');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
       $output->writeln([
-        'User Import',
-        '============'
+        'Employer Import',
+        '==============='
       ]);
       $inputFile = $input->getArgument('file');
       $reader = IOFactory::createReaderForFile($inputFile);
@@ -57,9 +57,8 @@ class ImportUsers extends Command
             $i++;
           }
           $params["password"] = "password";
-          $params["role"] = "ROLE_EMPLOYER";
           $params["bio"] = " ";
-          $user = $this->us->createUser($params);
+          $user = $this->es->createEmployer($params);
           $output->writeln([$user]);
         }
       }
