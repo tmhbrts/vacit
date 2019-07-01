@@ -9,7 +9,7 @@
       <header>
         <div class="logo">[LOGO]</div>
         <nav>
-          {% block buttons %}{% endblock %}
+          {{ include('nav.html.twig') }}
         </nav>
       </header>
         {% block content %}{% endblock %}

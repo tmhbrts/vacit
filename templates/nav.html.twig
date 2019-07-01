@@ -1,0 +1,7 @@
+{% if is_granted('ROLE_EMPLOYER') %}
+    [MIJN PROFIEL] [MIJN VACATURES] [UITLOGGEN]
+{% elseif is_granted('ROLE_CANDIDATE') %}
+    [MIJN PROFIEL] [MIJN SOLLICITATIES] [UITLOGGEN]
+{% else %}
+    [REGISTREREN] [INLOGGEN]
+{% endif %}
