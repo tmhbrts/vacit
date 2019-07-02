@@ -1,7 +1,20 @@
 {% if is_granted('ROLE_EMPLOYER') %}
     [MIJN PROFIEL] [MIJN VACATURES] [UITLOGGEN]
 {% elseif is_granted('ROLE_CANDIDATE') %}
-    [MIJN PROFIEL] [MIJN SOLLICITATIES] [UITLOGGEN]
+    [<a href="{{ path('fos_user_profile_show') }}">
+      MIJN PROFIEL
+    </a>]
+    [<a href="#">
+      MIJN SOLLICITATIES
+    </a>]
+    [<a href="{{ path('fos_user_security_logout') }}">
+      UITLOGGEN
+    </a>]
 {% else %}
-    [REGISTREREN] [INLOGGEN]
+    <a href="{{ path('fos_user_registration_register') }}">
+      [REGISTREREN]
+    </a>
+    <a href="{{ path('fos_user_security_login') }}">
+      [INLOGGEN]
+    </a>
 {% endif %}
