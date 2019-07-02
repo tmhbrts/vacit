@@ -21,28 +21,28 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=50, nullable=true)
      */
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=50, nullable=true)
      */
     private $address;
 
     /**
-     * @ORM\Column(type="string", length=6)
+     * @ORM\Column(type="string", length=6, nullable=true)
      */
     private $postal_code;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\City")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $city;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     private $bio;
 
