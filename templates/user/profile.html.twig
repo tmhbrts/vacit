@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}VAC!T - Vacaturesite voor IT{% endblock %}
+
+{% block content %}
+  {% if user is defined %}
+    <p>{{user.username}}</p>
+  {% else %}
+    Je bent niet ingelogd als gebruiker...
+  {% endif %}
+{% endblock %}
