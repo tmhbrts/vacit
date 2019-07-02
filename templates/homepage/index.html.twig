@@ -9,6 +9,11 @@
       <ul>
         <li>{{ job.employer.name }}</li>
         <li>{{ job.city.city }}</li>
+        <li>
+          <a href="{{ path('job_show', { 'id': job.id }) }}">
+            go to
+          </a>
+        </li>
       </ul>
     </div>
   {% endfor %}
