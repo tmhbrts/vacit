@@ -27,7 +27,7 @@ class JobController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="job_show")
+     * @Route("/{id<\d+>}", name="job_show")
      * @Template()
      */
     public function show($id)

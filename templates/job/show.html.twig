@@ -3,11 +3,29 @@
 {% block title %}VAC!T - Vacaturesite voor IT{% endblock %}
 
 {% block content %}
-  <div class="job">
-    <h3>{{ job.level.level }} {{ job.title }}</h3>
+  {% if job is not empty %}
+    <div>{{ job.date|date("d/m/Y") }}</div>
+    <h3>{{ job.title }} voor {{job.employer.name}}</h3>
     <ul>
-      <li>{{ job.employer.name }}</li>
-      <li>{{ job.city.city }}</li>
+      <li>Niveau: {{ job.level.level }}</li>
+      <li>Plaats: {{ job.city.city }}</li>
     </ul>
-  </div>
+
+    <p>{{ job.description }}</p>
+
+    {% if is_granted('ROLE_CANDIDATE') %}
+      <p>[SOLLICITEER DIRECT]</p>
+    {% endif %}
+
+    <h4>Meer vacatures van {{job.employer.name}}:</h4>
+    {% for job in job.employer.jobs %}
+      <ul>
+        <li>Datum: {{ job.date|date("d/m/Y") }}</li>
+        <li>Vacature: {{ job.title }}</li>
+        <li>Niveau: {{ job.level.level }}</li>
+      </ul>
+    {% endfor %}
+  {% else %}
+    Vacature niet gevonden...
+  {% endif %}
 {% endblock %}
