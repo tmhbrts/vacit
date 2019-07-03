@@ -28,6 +28,21 @@ class User extends BaseUser
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
      */
+    private $first_name;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $date_of_birth;
+
+    /**
+     * @ORM\Column(type="string", length=16, nullable=true)
+     */
+    private $phone_number;
+
+    /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+     */
     private $address;
 
     /**
@@ -82,6 +97,42 @@ class User extends BaseUser
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getFirstName(): ?string
+    {
+        return $this->first_name;
+    }
+
+    public function setFirstName(?string $first_name): self
+    {
+        $this->first_name = $first_name;
+
+        return $this;
+    }
+
+    public function getDateOfBirth(): ?\DateTimeInterface
+    {
+        return $this->date_of_birth;
+    }
+
+    public function setDateOfBirth(?\DateTimeInterface $date_of_birth): self
+    {
+        $this->date_of_birth = $date_of_birth;
+
+        return $this;
+    }
+
+    public function getPhoneNumber(): ?string
+    {
+        return $this->phone_number;
+    }
+
+    public function setPhoneNumber(?string $phone_number): self
+    {
+        $this->phone_number = $phone_number;
 
         return $this;
     }
