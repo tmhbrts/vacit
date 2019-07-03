@@ -14,19 +14,6 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class JobRepository extends ServiceEntityRepository
 {
-    /**
-     * @return Job[] Returns an array of Job objects
-     */
-    public function findLatest($limit)
-    {
-        return $this->createQueryBuilder('j')
-            ->orderBy('j.date', 'DESC')
-            ->setMaxResults($limit)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Job::class);

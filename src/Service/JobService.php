@@ -4,28 +4,21 @@ namespace App\Service;
 
 use App\Entity\Job;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Service\EntityService;
 
-class JobService
+class JobService extends EntityService
 {
-    private $rep;
-
-    public function find($id)
-    {
-      return $this->rep->find($id);
-    }
-
-    public function findAll()
-    {
-      return $this->rep->findAll();
-    }
-
     public function findLatest($limit)
     {
-      return $this->rep->findLatest($limit);
+      return $this->rep->createQueryBuilder('q')
+                       ->orderBy('q.date', 'DESC')
+                       ->setMaxResults($limit)
+                       ->getQuery()
+                       ->getResult();
     }
 
     public function __construct(EntityManagerInterface $em)
     {
-      $this->rep = $em->getRepository(Job::class);
+      parent::__construct($em, Job::class);
     }
 }

@@ -4,13 +4,12 @@ namespace App\Service;
 
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Service\EntityService;
 
 class UserService
 {
-    private $rep;
-
     public function __construct(EntityManagerInterface $em)
     {
-      $this->rep = $em->getRepository(User::class);
+      parent::__construct($em, User::class);
     }
 }
