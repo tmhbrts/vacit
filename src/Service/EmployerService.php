@@ -2,24 +2,20 @@
 
 namespace App\Service;
 
-use Doctrine\ORM\EntityManagerInterface;
 use FOS\UserBundle\Model\UserManagerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use App\Service\CityService;
 
 class EmployerService
 {
-  private $em;
   private $um;
   private $encoder;
   private $cs;
 
-  public function __construct(EntityManagerInterface $em,
-                              UserManagerInterface $um,
+  public function __construct(UserManagerInterface $um,
                               UserPasswordEncoderInterface $encoder,
                               CityService $cs)
   {
-    $this->em = $em;
     $this->um = $um;
     $this->encoder = $encoder;
     $this->cs = $cs;
