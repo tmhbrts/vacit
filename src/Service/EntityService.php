@@ -17,6 +17,11 @@ class EntityService
       return $this->rep->findAll();
     }
 
+    public function findAZ($orderBy)
+    {
+      return $this->rep->findBy([], [$orderBy => 'ASC']);
+    }
+
     public function update($entity, $params)
     {
       foreach($params as $key => $val) {
