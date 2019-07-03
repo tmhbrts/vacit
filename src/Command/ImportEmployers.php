@@ -12,16 +12,16 @@ use Symfony\Component\Console\Input\ArrayInput;
 use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
-use App\Service\EmployerService;
+use App\Service\UserService;
 
 class ImportEmployers extends Command
 {
-    private $es;
+    private $us;
 
-    public function __construct(EmployerService $es)
+    public function __construct(UserService $us)
     {
         parent::__construct();
-        $this->es = $es;
+        $this->us = $us;
     }
 
     protected function configure()
@@ -66,7 +66,7 @@ class ImportEmployers extends Command
           }
           $params["password"] = "password";
           $params["bio"] = " ";
-          $employer = $this->es->createEmployer($params);
+          $employer = $this->us->createEmployer($params);
           $output->writeln(dump($params));
         }
     }
