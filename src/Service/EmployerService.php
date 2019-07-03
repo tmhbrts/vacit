@@ -2,24 +2,27 @@
 
 namespace App\Service;
 
-use App\Entity\City;
 use Doctrine\ORM\EntityManagerInterface;
 use FOS\UserBundle\Model\UserManagerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use App\Service\CityService;
 
 class EmployerService
 {
   private $em;
   private $um;
   private $encoder;
+  private $cs;
 
   public function __construct(EntityManagerInterface $em,
                               UserManagerInterface $um,
-                              UserPasswordEncoderInterface $encoder)
+                              UserPasswordEncoderInterface $encoder,
+                              CityService $cs)
   {
     $this->em = $em;
     $this->um = $um;
     $this->encoder = $encoder;
+    $this->cs = $cs;
   }
 
   public function createEmployer($params)
@@ -39,8 +42,7 @@ class EmployerService
       $user->setAddress($params["address"]);
       $user->setPostalCode($params["postal_code"]);
 
-      $cityRepository = $this->em->getRepository(City::class);
-      $city = $cityRepository->findCity($params["city"]);
+      $city = $this->cs->findCity($params["city"]);
       if(empty($city)) {
         $city = $cityRepository->find(1);
       }
