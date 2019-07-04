@@ -55,7 +55,6 @@ class ImportEmployers extends Command
         for($i = 1; $i <= $highestColIndex; $i++) {
           $index[$i] = $spreadsheet->getCellByColumnAndRow($i, 1)
                                    ->getValue();
-          $output->writeln(dump($index[$i]));
         }
         for($i = 2; $i <= $highestRow; $i++) {
           $params = array();
@@ -66,8 +65,9 @@ class ImportEmployers extends Command
           }
           $params["password"] = "password";
           $params["bio"] = " ";
-          $employer = $this->us->createEmployer($params);
           $output->writeln(dump($params));
+          $output->writeln('===============');
+          $employer = $this->us->createEmployer($params);
         }
     }
 }
