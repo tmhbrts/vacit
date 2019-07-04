@@ -22,6 +22,16 @@ class EntityService
       return $this->rep->findBy([], [$orderBy => 'ASC']);
     }
 
+    public function findByName($name)
+    {
+      return $this->rep->createQueryBuilder('q')
+                       ->andWhere('q.name = :city_name')
+                       ->setParameter('name', $name)
+                       ->getQuery()
+                       ->getOneOrNullResult();
+    }
+
+    /*
     public function update($entity, $params)
     {
       foreach($params as $key => $val) {
@@ -32,6 +42,7 @@ class EntityService
         $entity->$setKey($val);
       }
     }
+    */
 
     /*
     public function getFields($entity)

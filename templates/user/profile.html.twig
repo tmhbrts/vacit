@@ -31,15 +31,15 @@
     <select name="city">
     {% for city in cities %}
       {% if city == user.city %}
-      <option value="{{city.id}}" selected>{{city.city}}</option>
+      <option value="{{city.id}}" selected>{{city.name}}</option>
       {% else %}
-      <option value="{{city.id}}">{{city.city}}</option>
+      <option value="{{city.id}}">{{city.name}}</option>
       {% endif %}
     {% endfor %}
     </select><br>
 
     <input type="submit" value="Opslaan">
-    
+
   </form>
   {% else %}
     Je bent niet ingelogd...

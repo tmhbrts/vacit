@@ -19,21 +19,21 @@ class City
     /**
      * @ORM\Column(type="string", length=50)
      */
-    private $city;
+    private $name;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getCity(): ?string
+    public function getName(): ?string
     {
-        return $this->city;
+        return $this->name;
     }
 
     public function setCity(string $city): self
     {
-        $this->city = $city;
+        $this->city = $name;
 
         return $this;
     }

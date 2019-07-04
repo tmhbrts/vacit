@@ -30,7 +30,7 @@ class UserService
     $user->setPhoneNumber($params["phone_number"]);
     $user->setAddress($params["address"]);
     $user->setPostalCode($params["postal_code"]);
-    $user->setCity($this->cs->find($params["city"]));
+    $user->setCity($this->cs->findByName($params["city"]));
 
     $this->um->updateUser($user);
   }
