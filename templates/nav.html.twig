@@ -1,7 +1,7 @@
 {% if is_granted('ROLE_EMPLOYER') %}
     [MIJN PROFIEL] [MIJN VACATURES] [UITLOGGEN]
 {% elseif is_granted('ROLE_CANDIDATE') %}
-    [<a href="{{ path('fos_user_profile_show') }}">
+    [<a href="{{ path('profile') }}">
       MIJN PROFIEL
     </a>]
     [<a href="#">

@@ -21,6 +21,20 @@ class UserService
     $this->cs = $cs;
   }
 
+  public function updateProfile($user, $params)
+  {
+    $user->setFirstName($params["first_name"]);
+    $user->setName($params["name"]);
+    $user->setEmail($params["email"]);
+    $user->setDateOfBirth(new \DateTime($params['date_of_birth']));
+    $user->setPhoneNumber($params["phone_number"]);
+    $user->setAddress($params["address"]);
+    $user->setPostalCode($params["postal_code"]);
+    $user->setCity($this->cs->find($params["city"]));
+
+    $this->um->updateUser($user);
+  }
+
   public function createEmployer($params)
   {
     $u = $this->um->findUserByEmail($params["email"]);
