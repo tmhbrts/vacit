@@ -7,12 +7,11 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use App\Service\JobService;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use App\Service\ApplicationService;
 
 class ApplicationController extends AbstractController
 {
-    private $js;
     private $as;
 
     /**
@@ -21,21 +20,18 @@ class ApplicationController extends AbstractController
      */
     public function apply(Request $post)
     {
-        $user = $this->getUser();
         $id = $post->get('id');
         if($id) {
-          $job = $this->js->find($id);
-          $this->as->applyForJob($job, $user);
-          return ['job' => $job];
+          $candidate = $this->getUser();
+          $application = $this->as->applyForJob($id, $candidate);
+          return ['application' => $application];
         } else {
-          return;
+          return $this->redirectToRoute('homepage');
         }
     }
 
-    public function __construct(JobService $js,
-                                ApplicationService $as)
+    public function __construct(ApplicationService $as)
     {
-      $this->js = $js;
       $this->as = $as;
     }
 }

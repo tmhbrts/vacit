@@ -5,25 +5,24 @@ namespace App\Service;
 use App\Entity\Application;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Service\EntityService;
+use App\Service\JobService;
 
 class ApplicationService extends EntityService
 {
     private $em;
+    private $js;
 
-    public function applyForJob($job, $user)
+    public function applyForJob($id, $candidate)
     {
-      $application = new Application();
-      $application->setJob($job);
-      $application->setCandidate($user);
-      $application->setDate(new \DateTime('now'));
-
-      $this->em->persist($application);
-      $this->em->flush();
+      $job = $this->js->find($id);
+      $application = $this->rep->create($job, $candidate);
+      return $application;
     }
 
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(EntityManagerInterface $em,
+                                JobService $js)
     {
-      $this->em = $em;
+      $this->js = $js;
       parent::__construct($em, Application::class);
     }
 }

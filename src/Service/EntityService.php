@@ -31,27 +31,6 @@ class EntityService
                        ->getOneOrNullResult();
     }
 
-    /*
-    public function update($entity, $params)
-    {
-      foreach($params as $key => $val) {
-        if(strpos($key, 'date') !== false) {
-          $val = new \DateTime($val);
-        }
-        $setKey = 'set'.ucfirst($key);
-        $entity->$setKey($val);
-      }
-    }
-    */
-
-    /*
-    public function getFields($entity)
-    {
-      return $this->em->getClassMetadata($entity)
-                      ->reflFields;
-    }
-    */
-
     public function __construct($em, $entity) //get the em and entity from child
     {
       $this->em = $em;
