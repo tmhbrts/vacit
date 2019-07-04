@@ -22,7 +22,7 @@ class UserController extends AbstractController
     public function profile(Request $post)
     {
         $user = $this->getUser();
-        $cities = $this->cs->findAZ('city');
+        $cities = $this->cs->findAZ('name');
         $params = $post->request->all();
         if(!empty($params)) {
           $this->us->updateProfile($user, $params);
