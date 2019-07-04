@@ -14,7 +14,10 @@
     <p>{{ job.description }}</p>
 
     {% if is_granted('ROLE_CANDIDATE') %}
-      <p>[SOLLICITEER DIRECT]</p>
+      <form action="{{ path('apply') }}" method="post">
+        <input type="hidden" name="id" value="{{job.id}}">
+        <input type="submit" value="Solliciteer direct">
+      </form>
     {% endif %}
 
     <h4>Meer vacatures van {{job.employer.name}}:</h4>

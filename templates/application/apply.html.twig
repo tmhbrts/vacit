@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  {% if job is defined %}
+    Sollictatie {{ job.title }} | VAC!T
+  {% else %}
+    Vacaturesite voor IT | VAC!T
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  {% if job is defined %}
+    <p>
+      Bedankt voor je sollicitatie op de vacature voor {{ job.title }} bij {{ job.employer.name }}.
+    </p>
+    <p>
+      Wanneer de werkgever je heeft uitgenodigd voor een gesprek, zal dit zichtbaar worden onder 'Mijn Sollicitaties'.
+      <br>
+      We wensen je veel succes met je sollicitatie!
+  {% else %}
+    <p>
+      Deze pagina is alleen te bereiken vanaf een vacature...
+    </p>
+  {% endif %}
+{% endblock %}

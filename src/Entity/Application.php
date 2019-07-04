@@ -90,4 +90,9 @@ class Application
 
         return $this;
     }
+
+    public function __construct()
+    {
+        $this->setDate(new \DateTime('now'));
+    }
 }
