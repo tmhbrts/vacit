@@ -13,6 +13,7 @@ use App\Service\ApplicationService;
 class ApplicationController extends AbstractController
 {
     private $as;
+    private $user;
 
     /**
      * @Route("/apply", name="apply")
@@ -22,12 +23,23 @@ class ApplicationController extends AbstractController
     {
         $id = $post->get('id');
         if($id) {
-          $candidate = $this->getUser();
-          $application = $this->as->applyForJob($id, $candidate);
+          $user = $this->getUser();
+          $application = $this->as->applyForJob($id, $user);
           return ['application' => $application];
         } else {
           return $this->redirectToRoute('homepage');
         }
+    }
+
+    /**
+     * @Route("/my-applications", name="my_applications")
+     * @Template()
+     */
+    public function myApplications()
+    {
+        $user = $this->getUser();
+        $applications = $user->getApplications();
+        return ['applications' => $applications];
     }
 
     public function __construct(ApplicationService $as)

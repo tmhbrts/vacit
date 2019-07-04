@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Mijn sollicitaties | VAC!T
+{% endblock %}
+
+{% block content %}
+  {% if applications is not empty %}
+    <p>
+      {% for application in applications %}
+        {{ application.job.level.level }}
+        {{ application.job.title }}
+        bij {{ application.job.employer.name }}
+        <br>
+      {% endfor %}
+    </p>
+  {% else %}
+    <p>
+      Je hebt nog geen sollicitaties gedaan.
+    </p>
+  {% endif %}
+{% endblock %}
