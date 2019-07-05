@@ -1,0 +1,17 @@
+$(function() {
+
+  $(".remove-application").click(function() {
+    var id = $(this).attr("id");
+    var deletedRow = $(this).parent();
+
+    $.post("{{ path('remove_application') }}", {id: id}, function(result){
+      deletedRow.fadeTo(400, 0, function() {
+        $(this).hide(400, function () {
+          $(this).remove();
+        });
+      });
+    });
+
+  });
+
+});

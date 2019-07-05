@@ -6,15 +6,17 @@
 
 {% block content %}
   {% if applications is not empty %}
-    <p>
-      {% for application in applications %}
+    {% for application in applications %}
+      <div class="application">
         {{ application.date|date("d-m-Y") }} -
         {{ application.job.title }} -
         {{ application.job.employer.name }} -
-        {{ application.invitation | show_checkmark }}
-        <br>
-      {% endfor %}
-    </p>
+        {{ application.invitation | show_checkmark }} -
+        <button class="remove-application" id="{{ application.id }}">
+          x
+        </button>
+      </div>
+    {% endfor %}
   {% else %}
     <p>
       Je hebt nog geen sollicitaties gedaan.

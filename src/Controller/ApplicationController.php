@@ -42,6 +42,19 @@ class ApplicationController extends AbstractController
         return ['applications' => $applications];
     }
 
+    /**
+     * @Route("/remove-application", name="remove_application")
+     * @Template()
+     */
+    public function removeApplication(Request $post)
+    {
+        $id = $post->get('id');
+        $application = $this->as->find($id);
+        $this->as->remove($application);
+        return ['id' => $id];
+    }
+
+
     public function __construct(ApplicationService $as)
     {
       $this->as = $as;

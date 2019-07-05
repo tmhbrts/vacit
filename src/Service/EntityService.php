@@ -31,6 +31,12 @@ class EntityService
                        ->getOneOrNullResult();
     }
 
+    public function remove($object)
+    {
+      $this->em->remove($object);
+      $this->em->flush();
+    }
+
     public function __construct($em, $entity) //get the em and entity from child
     {
       $this->em = $em;
