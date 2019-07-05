@@ -8,9 +8,10 @@
   {% if applications is not empty %}
     <p>
       {% for application in applications %}
-        {{ application.job.level.level }}
-        {{ application.job.title }}
-        bij {{ application.job.employer.name }}
+        {{ application.date|date("d-m-Y") }} -
+        {{ application.job.title }} -
+        {{ application.job.employer.name }} -
+        {{ application.invitation | show_checkmark }}
         <br>
       {% endfor %}
     </p>
