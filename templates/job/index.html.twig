@@ -8,7 +8,7 @@
       <h3>{{ job.level.level }} {{ job.title }}</h3>
       <ul>
         <li>{{ job.employer.name }}</li>
-        <li>{{ job.city.city }}</li>
+        <li>{{ job.city.name }}</li>
         <li>
           <a href="{{ path('job_show', { 'id': job.id }) }}">
             go to
