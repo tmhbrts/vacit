@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Overzicht vacatures | VAC!T{% endblock %}
+
+{% block content %}
+  {% for job in jobs %}
+    <div class="job">
+      <h3>{{ job.level.level }} {{ job.title }}</h3>
+      <ul>
+        <li>{{ job.employer.name }}</li>
+        <li>{{ job.city.name }}</li>
+        <li>
+          <a href="{{ path('job_show', { 'id': job.id }) }}">
+            go to
+          </a>
+        </li>
+      </ul>
+    </div>
+  {% endfor %}
+{% endblock %}
