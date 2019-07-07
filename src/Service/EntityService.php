@@ -25,7 +25,7 @@ class EntityService
     public function findByName($name)
     {
       return $this->rep->createQueryBuilder('q')
-                       ->andWhere('q.name = :city_name')
+                       ->andWhere('q.name = :name')
                        ->setParameter('name', $name)
                        ->getQuery()
                        ->getOneOrNullResult();
