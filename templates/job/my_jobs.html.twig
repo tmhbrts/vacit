@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Overzicht vacatures | VAC!T{% endblock %}
+{% block title %}Mijn vacatures | VAC!T{% endblock %}
 
 {% block content %}
   <table id="my-jobs" class="display" style="width:100%">
@@ -21,7 +21,7 @@
           <td>
             {{ job.applications|length }}
             {% if job.applications|length > 0 %}
-              <a href="">bekijk</a>
+              <a href="{{ path('job_applications', { 'id': job.id }) }}">bekijk</a>
             {% endif %}
           </td>
         </tr>

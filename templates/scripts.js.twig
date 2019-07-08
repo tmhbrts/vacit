@@ -13,6 +13,12 @@ $(function() {
     });
   });
 
+  $.extend(true, $.fn.dataTable.defaults, {
+    "language": {
+      "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Dutch.json"
+    }
+  });
+
   $("#employer-jobs").DataTable( {
     "searching": false,
     "info": false,
@@ -37,4 +43,10 @@ $(function() {
     "paging": false,
     "stripeClasses": []
   });
+
+  $("#job-applications").DataTable( {
+    "searching": false,
+    "stripeClasses": []
+  });
+
 });

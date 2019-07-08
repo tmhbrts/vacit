@@ -19,6 +19,13 @@ class ApplicationService extends EntityService
       return $application;
     }
 
+    public function getApplicationsForJob($id)
+    {
+      $job = $this->js->find($id);
+      $applications = $job->getApplications();
+      return $applications;
+    }
+
     public function __construct(EntityManagerInterface $em,
                                 JobService $js)
     {

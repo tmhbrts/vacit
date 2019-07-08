@@ -1,36 +1,40 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-  Mijn sollicitaties | VAC!T
+  {% if applications is not empty %}
+    Sollicitaties voor {{applications|first.job.title}} | VAC!T#
+  {% else %}
+    Vacaturesite voor IT | VAC!T#
+  {% endif %}
 {% endblock %}
 
 {% block content %}
   {% if applications is not empty %}
-  <table id="my-applications" class="display" style="width:100%">
+  <h3>Sollicitaties voor {{applications|first.job.title}}</h3>
+  <table id="job-applications" class="display" style="width:100%">
     <thead>
       <tr>
         <th>Datum</th>
-        <th>Vacature</th>
-        <th>Werkgever</th>
+        <th>Kandidaat</th>
         <th>Uitgenodigd</th>
-        <th></th>
       </tr>
     </thead>
     <tbody>
       {% for application in applications %}
         <tr>
           <td>{{ application.date|date("d-m-Y") }}</td>
-          <td>{{ application.job.title }}</td>
-          <td>{{ application.job.employer.name }}</td>
+          <td>
+            {{ application.candidate.name }},
+            {{ application.candidate.firstName}}
+          </td>
           <td>{{ application.invitation|show_checkmark }}</td>
-          <td>verwijder</td>
         </tr>
       {% endfor %}
     </tbody>
   </table>
   {% else %}
-    <p>
-      Je hebt nog geen sollicitaties gedaan.
-    </p>
+    <h3>
+      Geen sollicitaties gevonden
+    </h3>
   {% endif %}
 {% endblock %}

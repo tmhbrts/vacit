@@ -37,6 +37,7 @@ class ApplicationController extends AbstractController
      */
     public function myApplications()
     {
+        $this->denyAccessUnlessGranted('ROLE_CANDIDATE', null, 'Niet toegestaan');
         $user = $this->getUser();
         $applications = $user->getApplications();
         return ['applications' => $applications];
@@ -52,6 +53,16 @@ class ApplicationController extends AbstractController
         $application = $this->as->find($id);
         $this->as->remove($application);
         return ['id' => $id];
+    }
+
+    /**
+     * @Route("job-applications/{id<\d+>}", name="job_applications")
+     * @Template()
+     */
+    public function jobApplications($id)
+    {
+        $applications = $this->as->getApplicationsForJob($id);
+        return ['applications' => $applications];
     }
 
 
