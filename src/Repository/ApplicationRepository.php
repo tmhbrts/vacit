@@ -16,7 +16,7 @@ class ApplicationRepository extends ServiceEntityRepository
     public function create($job, $candidate)
     {
         $exists = $this->findBy(['job' => $job,
-                                 'candidate' => $candidate]);                         
+                                 'candidate' => $candidate]);
         if($exists) {
           return;
         } else {
@@ -30,5 +30,16 @@ class ApplicationRepository extends ServiceEntityRepository
 
           return $application;
         }
+    }
+
+    public function setInvitation($application)
+    {
+        $application->setInvitation(true);
+
+        $em = $this->getEntityManager();
+        $em->persist($application);
+        $em->flush();
+
+        return $application;
     }
 }
