@@ -26,6 +26,13 @@ class ApplicationService extends EntityService
       return $applications;
     }
 
+    public function setInvitation($id)
+    {
+      $application = $this->find($id);
+      $application = $this->rep->setInvitation($application);
+      return $application;
+    }
+
     public function __construct(EntityManagerInterface $em,
                                 JobService $js)
     {

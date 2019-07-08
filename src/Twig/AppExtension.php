@@ -12,6 +12,7 @@ class AppExtension extends AbstractExtension
     {
         return [
             new TwigFilter('invitationStatus', [$this, 'showInvitationStatus']),
+            new TwigFilter('inviteAction', [$this, 'showInviteAction'])
         ];
     }
 
@@ -22,4 +23,17 @@ class AppExtension extends AbstractExtension
         }
         return;
     }
+
+    public function showInviteAction($bool)
+    {
+        if($bool) {
+          return('✓');
+        } else {
+          return('
+            <button class="invite">Uitnodigen</button>
+          ');
+        }
+    }
+
+
 }

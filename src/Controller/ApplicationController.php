@@ -66,6 +66,21 @@ class ApplicationController extends AbstractController
         return ['applications' => $applications];
     }
 
+    /**
+     * @Route("/invite", name="invite")
+     * @Template()
+     */
+    public function invite(Request $post)
+    {
+        $id = $post->get('id');
+        if($id) {
+          $application = $this->as->setInvitation($id);
+          return ['id' => $application->getId()];
+        } else {
+          return;
+        }
+    }
+
 
     public function __construct(ApplicationService $as)
     {

@@ -20,6 +20,16 @@ $(function() {
     });
   });
 
+  $(".invite").click(function() {
+    var id = $(this).closest("tr").attr("id");
+    var tableField = $(this).closest("td");
+    var path = "{{ path('invite') }}";
+
+    $.post(path, {id: id}, function(result){
+      tableField.html("&#10003;");
+    });
+  });
+
   $.extend(true, $.fn.dataTable.defaults, {
     "language": {
       "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Dutch.json"

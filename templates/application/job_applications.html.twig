@@ -10,7 +10,7 @@
 
 {% block content %}
   {% if applications is not empty %}
-  <h3>Sollicitaties voor {{applications|first.job.title}}</h3>
+  <h3>Sollicitaties voor {{ applications|first.job.title }}</h3>
   <table id="job-applications" class="display" style="width:100%">
     <thead>
       <tr>
@@ -21,13 +21,13 @@
     </thead>
     <tbody>
       {% for application in applications %}
-        <tr>
+        <tr id="{{ application.id }}">
           <td>{{ application.date|date("d-m-Y") }}</td>
           <td>
             {{ application.candidate.name }},
             {{ application.candidate.firstName}}
           </td>
-          <td>{{ application.invitation|invitationStatus }}</td>
+          <td>{{ application.invitation|inviteAction|raw }}</td>
         </tr>
       {% endfor %}
     </tbody>
