@@ -18,13 +18,13 @@
     </thead>
     <tbody>
       {% for application in applications %}
-        <tr>
+        <tr id="{{ application.id }}">
           <td>{{ application.date|date("d-m-Y") }}</td>
           <td>{{ application.job.title }}</td>
           <td>{{ application.job.employer.name }}</td>
           <td>{{ application.invitation|invitationStatus }}</td>
           <td>
-            <button id="{{ application.id }}" class="remove application">
+            <button class="remove application">
               verwijder
             </button>
           </td>

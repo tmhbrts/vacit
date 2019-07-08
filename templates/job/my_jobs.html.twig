@@ -15,7 +15,7 @@
     </thead>
     <tbody>
       {% for job in jobs %}
-        <tr>
+        <tr id="{{ job.id }}">
           <td>{{ job.date|date("d-m-Y") }}</td>
           <td>{{ job.title }}</td>
           <td>{{ job.level.level }}</td>
@@ -26,7 +26,7 @@
             {% endif %}
           </td>
           <td>
-            <button id="{{ job.id }}" class="remove job">
+            <button class="remove job">
               verwijder
             </button>
           </td>

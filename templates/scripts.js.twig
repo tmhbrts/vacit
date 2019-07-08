@@ -1,8 +1,8 @@
 $(function() {
 
   $(".remove").click(function() {
-    var id = $(this).attr("id");
     var deletedRow = $(this).closest("tr");
+    var id = deletedRow.attr("id");
 
     if($(this).hasClass("application")) {
       var path = "{{ path('remove_application') }}";
