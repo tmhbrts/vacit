@@ -61,6 +61,7 @@ class ApplicationController extends AbstractController
      */
     public function jobApplications($id)
     {
+        $this->denyAccessUnlessGranted('ROLE_EMPLOYER', null, 'Niet toegestaan');
         $applications = $this->as->getApplicationsForJob($id);
         return ['applications' => $applications];
     }
