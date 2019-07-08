@@ -22,7 +22,7 @@
           <td>{{ application.date|date("d-m-Y") }}</td>
           <td>{{ application.job.title }}</td>
           <td>{{ application.job.employer.name }}</td>
-          <td>{{ application.invitation|show_checkmark }}</td>
+          <td>{{ application.invitation|invitationStatus }}</td>
           <td>
             <button id="{{ application.id }}" class="remove application">
               verwijder

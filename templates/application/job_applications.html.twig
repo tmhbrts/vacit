@@ -27,7 +27,7 @@
             {{ application.candidate.name }},
             {{ application.candidate.firstName}}
           </td>
-          <td>{{ application.invitation|show_checkmark }}</td>
+          <td>{{ application.invitation|invitationStatus }}</td>
         </tr>
       {% endfor %}
     </tbody>

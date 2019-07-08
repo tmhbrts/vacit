@@ -11,11 +11,11 @@ class AppExtension extends AbstractExtension
     public function getFilters(): array
     {
         return [
-            new TwigFilter('show_checkmark', [$this, 'showCheckmark']),
+            new TwigFilter('invitationStatus', [$this, 'showInvitationStatus']),
         ];
     }
 
-    public function showCheckmark($bool)
+    public function showInvitationStatus($bool)
     {
         if($bool) {
           return('✓');
