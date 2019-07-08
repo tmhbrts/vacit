@@ -1,10 +1,17 @@
 $(function() {
 
-  $(".remove-application").click(function() {
+  $(".remove").click(function() {
     var id = $(this).attr("id");
-    var deletedRow = $(this).parent();
+    var deletedRow = $(this).closest("tr");
 
-    $.post("{{ path('remove_application') }}", {id: id}, function(result){
+    if($(this).hasClass("application")) {
+      var path = "{{ path('remove_application') }}";
+    }
+    if($(this).hasClass("job")) {
+      var path = "{{ path('remove_job') }}";
+    }
+
+    $.post(path, {id: id}, function(result){
       deletedRow.fadeTo(400, 0, function() {
         $(this).hide(400, function () {
           $(this).remove();

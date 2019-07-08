@@ -45,6 +45,18 @@ class JobController extends AbstractController
         return ['jobs' => $jobs];
     }
 
+    /**
+     * @Route("/remove-job", name="remove_job")
+     * @Template()
+     */
+    public function remove(Request $post)
+    {
+        $id = $post->get('id');
+        $job = $this->js->find($id);
+        $this->js->remove($job);
+        return ['id' => $id];
+    }
+
     public function __construct(JobService $js) {
       $this->js = $js;
     }

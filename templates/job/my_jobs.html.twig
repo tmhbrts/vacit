@@ -10,6 +10,7 @@
         <th>Vacature</th>
         <th>Niveau</th>
         <th>Sollicitaties</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -23,6 +24,11 @@
             {% if job.applications|length > 0 %}
               <a href="{{ path('job_applications', { 'id': job.id }) }}">bekijk</a>
             {% endif %}
+          </td>
+          <td>
+            <button id="{{ job.id }}" class="remove job">
+              verwijder
+            </button>
           </td>
         </tr>
       {% endfor %}
