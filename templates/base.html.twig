@@ -3,7 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}{% endblock %}</title>
-        <link rel="stylesheet" href="{{ asset('assets/css/vacit-main.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vacit-main.css') }}">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
     </head>
     <body>
       <header>
@@ -16,13 +17,16 @@
           {{ include('nav.html.twig') }}
         </nav>
       </header>
+      <p>
         {% block content %}{% endblock %}
+      </p>
       <footer>
         <div class="logo">[LOGO]</div>
         <div>[ADRES]</div>
         <div>[PRIVACY]</div>
       </footer>
       <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+      <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
       <script>
         {{ include('scripts.js.twig') }}
       </script>

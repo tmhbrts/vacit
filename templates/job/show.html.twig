@@ -4,7 +4,7 @@
 
 {% block content %}
   {% if job is not empty %}
-    <div>{{ job.date|date("d/m/Y") }}</div>
+    <div>{{ job.date|date("d-m-Y") }}</div>
     <h3>{{ job.title }} voor {{job.employer.name}}</h3>
     <ul>
       <li>Niveau: {{ job.level.level }}</li>
@@ -21,13 +21,25 @@
     {% endif %}
 
     <h4>Meer vacatures van {{job.employer.name}}:</h4>
-    {% for job in job.employer.jobs %}
-      <ul>
-        <li>Datum: {{ job.date|date("d/m/Y") }}</li>
-        <li>Vacature: {{ job.title }}</li>
-        <li>Niveau: {{ job.level.level }}</li>
-      </ul>
-    {% endfor %}
+    <table id="employer-jobs" class="display" style="width:100%">
+      <thead>
+        <tr>
+          <th>Datum</th>
+          <th>Vacature</th>
+          <th>Niveau</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for job in job.employer.jobs %}
+          <tr>
+            <td>{{ job.date|date("d-m-Y") }}</td>
+            <td>{{ job.title }}</td>
+            <td>{{ job.level.level }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
   {% else %}
     Vacature niet gevonden...
   {% endif %}

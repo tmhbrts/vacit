@@ -7,7 +7,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use App\Service\JobService;
 
 class JobController extends AbstractController
@@ -40,8 +39,8 @@ class JobController extends AbstractController
      */
     public function myJobs()
     {
-        $user = $this->getUser();
         $this->denyAccessUnlessGranted('ROLE_EMPLOYER', null, 'Niet toegestaan');
+        $user = $this->getUser();
         $jobs = $user->getJobs();
         return ['jobs' => $jobs];
     }

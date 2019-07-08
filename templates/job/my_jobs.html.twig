@@ -3,18 +3,29 @@
 {% block title %}Overzicht vacatures | VAC!T{% endblock %}
 
 {% block content %}
-  {% for job in jobs %}
-    <div class="job">
-      <h3>{{ job.level.level }} {{ job.title }}</h3>
-      <ul>
-        <li>{{ job.employer.name }}</li>
-        <li>{{ job.city.name }}</li>
-        <li>
-          <a href="{{ path('job_show', { 'id': job.id }) }}">
-            go to
-          </a>
-        </li>
-      </ul>
-    </div>
-  {% endfor %}
+  <table id="my-jobs" class="display" style="width:100%">
+    <thead>
+      <tr>
+        <th>Datum</th>
+        <th>Vacature</th>
+        <th>Niveau</th>
+        <th>Sollicitaties</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for job in jobs %}
+        <tr>
+          <td>{{ job.date|date("d-m-Y") }}</td>
+          <td>{{ job.title }}</td>
+          <td>{{ job.level.level }}</td>
+          <td>
+            {{ job.applications|length }}
+            {% if job.applications|length > 0 %}
+              <a href="">bekijk</a>
+            {% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 {% endblock %}

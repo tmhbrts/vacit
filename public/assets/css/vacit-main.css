@@ -1,3 +1,20 @@
 body {
-   font: 17px sans-serif;
+  font: 17px sans-serif;
+}
+
+table {
+  border-collapse: collapse;
+  border-bottom: 0 !important;
+}
+
+th {
+  text-align: left;
+  border: 0 !important;
+  padding: 10px 8px !important;
+}
+
+td {
+  border-bottom: 1px solid black;
+  padding-top: 1.2em;
+  padding-bottom: 6px;
 }

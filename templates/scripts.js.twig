@@ -11,7 +11,30 @@ $(function() {
         });
       });
     });
-
   });
 
+  $("#employer-jobs").DataTable( {
+    "searching": false,
+    "info": false,
+    "paging": false,
+    "stripeClasses": []
+  });
+
+  $("#my-jobs").DataTable( {
+    "searching": false,
+    "info": false,
+    "paging": false,
+    "stripeClasses": []
+  });
+
+  $("#my-applications").DataTable( {
+    'columnDefs': [ {
+      'targets': [4],
+      'orderable': false
+    }],
+    "searching": false,
+    "info": false,
+    "paging": false,
+    "stripeClasses": []
+  });
 });
