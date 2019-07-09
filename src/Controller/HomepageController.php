@@ -26,7 +26,8 @@ class HomepageController extends AbstractController
         return ['jobs' => $jobs];
     }
 
-    public function __construct(JobService $js) {
-      $this->js = $js;
+    public function __construct(JobService $js)
+    {
+        $this->js = $js;
     }
 }

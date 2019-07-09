@@ -23,11 +23,11 @@ class ApplicationController extends AbstractController
     {
         $id = $post->get('id');
         if($id) {
-          $user = $this->getUser();
-          $application = $this->as->applyForJob($id, $user);
-          return ['application' => $application];
+            $user = $this->getUser();
+            $application = $this->as->applyForJob($id, $user);
+            return ['application' => $application];
         } else {
-          return $this->redirectToRoute('homepage');
+            return $this->redirectToRoute('homepage');
         }
     }
 
@@ -73,16 +73,16 @@ class ApplicationController extends AbstractController
     {
         $id = $post->get('id');
         if($id) {
-          $application = $this->as->setInvitation($id);
-          return ['id' => $application->getId()];
+            $application = $this->as->setInvitation($id);
+            return ['id' => $application->getId()];
         } else {
-          return;
+            return;
         }
     }
 
 
     public function __construct(ApplicationService $as)
     {
-      $this->as = $as;
+        $this->as = $as;
     }
 }

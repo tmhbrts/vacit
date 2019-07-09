@@ -10,6 +10,6 @@ class CityService extends EntityService
 {
     public function __construct(EntityManagerInterface $em)
     {
-      parent::__construct($em, City::class);
+        parent::__construct($em, City::class);
     }
 }

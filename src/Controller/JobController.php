@@ -70,7 +70,7 @@ class JobController extends AbstractController
         $user = $this->getUser();
         $params = $post->request->all();
         if(!empty($params) && $this->js->checkOwnership($id, $user)) {
-          $this->js->update($id, $params);
+            $this->js->update($id, $params);
         }
         $job = $this->js->find($id);
         $levels = $this->ls->findAll();
@@ -89,16 +89,17 @@ class JobController extends AbstractController
         $id = $post->get('id');
         $employer = $this->getUser();
         if($this->js->checkOwnership($id, $employer)) {
-          $this->js->remove($id);
-          return ['id' => $id];
+            $this->js->remove($id);
+            return ['id' => $id];
         }
     }
 
     public function __construct(JobService $js,
                                 CityService $cs,
-                                LevelService $ls) {
-      $this->js = $js;
-      $this->cs = $cs;
-      $this->ls = $ls;
+                                LevelService $ls)
+    {
+        $this->js = $js;
+        $this->cs = $cs;
+        $this->ls = $ls;
     }
 }

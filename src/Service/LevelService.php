@@ -10,6 +10,6 @@ class LevelService extends EntityService
 {
     public function __construct(EntityManagerInterface $em)
     {
-      parent::__construct($em, Level::class);
+        parent::__construct($em, Level::class);
     }
 }

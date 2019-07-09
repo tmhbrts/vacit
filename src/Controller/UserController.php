@@ -25,7 +25,7 @@ class UserController extends AbstractController
         $cities = $this->cs->findAZ('name');
         $params = $post->request->all();
         if(!empty($params)) {
-          $this->us->updateProfile($user, $params);
+            $this->us->updateProfile($user, $params);
         }
         return ['user' => $user,
                 'params' => $params,
@@ -35,7 +35,7 @@ class UserController extends AbstractController
     public function __construct(UserService $us,
                                 CityService $cs)
     {
-      $this->us = $us;
-      $this->cs = $cs;
+        $this->us = $us;
+        $this->cs = $cs;
     }
 }

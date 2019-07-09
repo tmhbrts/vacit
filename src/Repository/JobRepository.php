@@ -16,28 +16,28 @@ class JobRepository extends ServiceEntityRepository
 {
     public function update($job, $params)
     {
-      $job->setTitle($params["title"]);
-      $job->setLevel($params["level"]);
-      $job->setCity($params["city"]);
-      $job->setDescription($params["description"]);
+        $job->setTitle($params["title"]);
+        $job->setLevel($params["level"]);
+        $job->setCity($params["city"]);
+        $job->setDescription($params["description"]);
 
-      $em = $this->getEntityManager();
-      $em->persist($job);
-      $em->flush();
+        $em = $this->getEntityManager();
+        $em->persist($job);
+        $em->flush();
 
-      return $job;
+        return $job;
     }
 
     public function create($employer)
     {
-      $job = new Job();
-      $job->setEmployer($employer);
+        $job = new Job();
+        $job->setEmployer($employer);
 
-      $em = $this->getEntityManager();
-      $em->persist($job);
-      $em->flush();
+        $em = $this->getEntityManager();
+        $em->persist($job);
+        $em->flush();
 
-      return $job;
+        return $job;
     }
 
     public function __construct(RegistryInterface $registry)

@@ -81,14 +81,6 @@ class User extends BaseUser
      */
     private $cv_filename;
 
-    public function __construct()
-    {
-        parent::__construct();
-        $this->jobs = new ArrayCollection();
-        $this->applications = new ArrayCollection();
-        $this->addRole("ROLE_CANDIDATE");
-    }
-
     public function getName(): ?string
     {
         return $this->name;
@@ -269,6 +261,14 @@ class User extends BaseUser
         $this->cv_filename = $cv_filename;
 
         return $this;
+    }
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->jobs = new ArrayCollection();
+        $this->applications = new ArrayCollection();
+        $this->addRole("ROLE_CANDIDATE");
     }
 }
 

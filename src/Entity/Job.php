@@ -58,12 +58,6 @@ class Job
      */
     private $applications;
 
-    public function __construct()
-    {
-        $this->applications = new ArrayCollection();
-        $this->setDate(new \DateTime('now'));
-    }
-
     public function getId(): ?int
     {
         return $this->id;
@@ -182,5 +176,11 @@ class Job
         }
 
         return $this;
+    }
+
+    public function __construct()
+    {
+        $this->applications = new ArrayCollection();
+        $this->setDate(new \DateTime('now'));
     }
 }

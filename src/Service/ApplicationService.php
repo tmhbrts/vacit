@@ -13,40 +13,40 @@ class ApplicationService extends EntityService
 
     public function applyForJob($id, $candidate)
     {
-      $job = $this->js->find($id);
-      $application = $this->rep->create($job, $candidate);
-      return $application;
+        $job = $this->js->find($id);
+        $application = $this->rep->create($job, $candidate);
+        return $application;
     }
 
     public function getApplicationsForJob($id)
     {
-      $job = $this->js->find($id);
-      $applications = $job->getApplications();
-      return $applications;
+        $job = $this->js->find($id);
+        $applications = $job->getApplications();
+        return $applications;
     }
 
     public function setInvitation($id)
     {
-      $application = $this->find($id);
-      $application = $this->rep->setInvitation($application);
-      return $application;
+        $application = $this->find($id);
+        $application = $this->rep->setInvitation($application);
+        return $application;
     }
 
     public function checkOwnership($id, $candidate)
     {
-      $application = $this->find($id);
-      $candidateApplications = $candidate->getApplications();
-      foreach($candidateApplications as $candidateApplication) {
-        if($application == $candidateApplication) {
-          return true;
+        $application = $this->find($id);
+        $candidateApplications = $candidate->getApplications();
+        foreach($candidateApplications as $candidateApplication) {
+            if($application == $candidateApplication) {
+                return true;
+            }
         }
-      }
     }
 
     public function __construct(EntityManagerInterface $em,
                                 JobService $js)
     {
-      $this->js = $js;
-      parent::__construct($em, Application::class);
+        $this->js = $js;
+        parent::__construct($em, Application::class);
     }
 }

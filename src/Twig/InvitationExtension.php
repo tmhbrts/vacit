@@ -19,7 +19,7 @@ class InvitationExtension extends AbstractExtension
     public function showInvitationStatus($bool)
     {
         if($bool) {
-          return('✓');
+            return('✓');
         }
         return;
     }
@@ -27,11 +27,9 @@ class InvitationExtension extends AbstractExtension
     public function showInviteAction($bool)
     {
         if($bool) {
-          return('✓');
+            return('✓');
         } else {
-          return('
-            <button class="invite">Uitnodigen</button>
-          ');
+            return('<button class="invite">Uitnodigen</button>');
         }
     }
 
