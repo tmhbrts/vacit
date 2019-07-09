@@ -4,7 +4,7 @@
 
 {% block content %}
   {% if user is not null %}
-    <form action="{{ path('profile') }}" method="post">
+    <form action="{{ path('edit_profile') }}" method="post">
       {% if is_granted('ROLE_CANDIDATE') %}
         {{ include('user/fields_candidate.html.twig') }}
       {% elseif is_granted('ROLE_EMPLOYER') %}

@@ -16,10 +16,10 @@ class UserController extends AbstractController
     private $cs;
 
     /**
-     * @Route("/edit-profile", name="profile")
+     * @Route("/edit-profile", name="edit_profile")
      * @Template()
      */
-    public function profile(Request $post)
+    public function editProfile(Request $post)
     {
         $user = $this->getUser();
         $cities = $this->cs->findAZ('name');
