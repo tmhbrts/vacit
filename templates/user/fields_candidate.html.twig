@@ -1,0 +1,31 @@
+<label>voornaam</label><br>
+<input type="text" name="first_name" value="{{user.firstName}}"><br>
+
+<label>achternaam</label><br>
+<input type="text" name="name" value="{{user.name}}"><br>
+
+<label>email</label><br>
+<input type="text" name="email" value="{{user.email}}"><br>
+
+<label>geboortedatum</label><br>
+<input type="date" name="date_of_birth" value="{{user.dateOfBirth|date('Y-m-d')}}"><br>
+
+<label>telefoonnummer</label><br>
+<input type="tel" name="phone_number" value="{{user.phoneNumber}}"><br>
+
+<label>adres</label><br>
+<input type="text" name="address" value="{{user.address}}"><br>
+
+<label>postcode</label><br>
+<input type="text" name="postal_code" value="{{user.postalCode}}"><br>
+
+<label>woonplaats</label><br>
+<select name="city">
+{% for city in cities %}
+  {% if city == user.city %}
+  <option value="{{city.id}}" selected>{{city.name}}</option>
+  {% else %}
+  <option value="{{city.id}}">{{city.name}}</option>
+  {% endif %}
+{% endfor %}
+</select><br>
