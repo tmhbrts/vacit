@@ -52,8 +52,7 @@ class JobController extends AbstractController
     public function remove(Request $post)
     {
         $id = $post->get('id');
-        $job = $this->js->find($id);
-        $this->js->remove($job);
+        $this->js->remove($id);
         return ['id' => $id];
     }
 

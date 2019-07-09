@@ -50,8 +50,7 @@ class ApplicationController extends AbstractController
     public function remove(Request $post)
     {
         $id = $post->get('id');
-        $application = $this->as->find($id);
-        $this->as->remove($application);
+        $this->as->remove($id);
         return ['id' => $id];
     }
 

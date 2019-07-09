@@ -31,8 +31,9 @@ class EntityService
                        ->getOneOrNullResult();
     }
 
-    public function remove($object)
+    public function remove($id)
     {
+      $object = $this->find($id);
       $this->em->remove($object);
       $this->em->flush();
     }
