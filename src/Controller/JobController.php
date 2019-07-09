@@ -8,10 +8,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Service\JobService;
+use App\Service\CityService;
+use App\Service\LevelService;
 
 class JobController extends AbstractController
 {
     private $js;
+    private $cs;
+    private $ls;
 
     /**
      * @Route("/jobs", name="job_index")
@@ -39,10 +43,28 @@ class JobController extends AbstractController
      */
     public function myJobs()
     {
-        $this->denyAccessUnlessGranted('ROLE_EMPLOYER', null, 'Niet toegestaan');
         $user = $this->getUser();
         $jobs = $user->getJobs();
         return ['jobs' => $jobs];
+    }
+
+    /**
+     * @Route("job/{id<\d+>}/edit", name="edit_job")
+     * @Template()
+     */
+    public function edit($id, Request $post)
+    {
+        $user = $this->getUser();
+        $params = $post->request->all();
+        if(!empty($params) && $this->js->checkOwnership($id, $user)) {
+          $this->js->update($id, $params);
+        }
+        $job = $this->js->find($id);
+        $levels = $this->ls->findAll();
+        $cities = $this->cs->findAZ('name');
+        return ['job' => $job,
+                'levels' => $levels,
+                'cities' => $cities];
     }
 
     /**
@@ -59,7 +81,11 @@ class JobController extends AbstractController
         }
     }
 
-    public function __construct(JobService $js) {
+    public function __construct(JobService $js,
+                                CityService $cs,
+                                LevelService $ls) {
       $this->js = $js;
+      $this->cs = $cs;
+      $this->ls = $ls;
     }
 }

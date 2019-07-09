@@ -5,9 +5,14 @@ namespace App\Service;
 use App\Entity\Job;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Service\EntityService;
+use App\Service\LevelService;
+use App\Service\CityService;
 
 class JobService extends EntityService
 {
+    private $ls;
+    private $cs;
+
     public function findLatest($limit)
     {
       return $this->rep->createQueryBuilder('q')
@@ -17,7 +22,15 @@ class JobService extends EntityService
                        ->getResult();
     }
 
-    public function checkOwnership($employer, $job_id)
+    public function update($id, $params)
+    {
+      $job = $this->find($id);
+      $params["level"] = $this->ls->find($params["level"]);
+      $params["city"] = $this->cs->find($params["city"]);
+      $this->rep->update($job, $params);
+    }
+
+    public function checkOwnership($id, $employer)
     {
       $job = $this->find($job_id);
       $employerJobs = $employer->getJobs();
@@ -28,8 +41,12 @@ class JobService extends EntityService
       }
     }
 
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(EntityManagerInterface $em,
+                                LevelService $ls,
+                                CityService $cs)
     {
+      $this->ls = $ls;
+      $this->cs = $cs;
       parent::__construct($em, Job::class);
     }
 }

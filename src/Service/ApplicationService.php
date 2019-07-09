@@ -9,7 +9,6 @@ use App\Service\JobService;
 
 class ApplicationService extends EntityService
 {
-    private $em;
     private $js;
 
     public function applyForJob($id, $candidate)

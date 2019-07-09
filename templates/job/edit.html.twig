@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vacature bewerken - VAC!T{% endblock %}
+
+{% block content %}
+  <form action="{{ path('edit_job', { 'id': job.id }) }}" method="post">
+
+    <label>Functie</label><br>
+    <input type="text" name="title" value="{{job.title}}"><br>
+
+    <label>Niveau</label><br>
+    <select name="level">
+    {% for level in levels %}
+      {% if level == job.level %}
+      <option value="{{level.id}}" selected>{{level.level}}</option>
+      {% else %}
+      <option value="{{level.id}}">{{level.level}}</option>
+      {% endif %}
+    {% endfor %}
+    </select><br>
+
+    <label>Plaats</label><br>
+    <select name="city">
+    {% for city in cities %}
+      {% if city == job.city %}
+      <option value="{{city.id}}" selected>{{city.name}}</option>
+      {% else %}
+      <option value="{{city.id}}">{{city.name}}</option>
+      {% endif %}
+    {% endfor %}
+    </select><br>
+
+    <label>Omschrijving</label><br>
+    <textarea name="description">{{job.description}}</textarea><br>
+
+    <input type="submit" value="Opslaan">
+
+  </form>
+{% endblock %}
