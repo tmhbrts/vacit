@@ -54,7 +54,7 @@ class Job
     private $date;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Application", mappedBy="job")
+     * @ORM\OneToMany(targetEntity="App\Entity\Application", mappedBy="job", orphanRemoval=true)
      */
     private $applications;
 
