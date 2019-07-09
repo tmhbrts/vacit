@@ -17,6 +17,17 @@ class JobService extends EntityService
                        ->getResult();
     }
 
+    public function checkOwnership($employer, $job_id)
+    {
+      $job = $this->find($job_id);
+      $employerJobs = $employer->getJobs();
+      foreach($employerJobs as $employerJob) {
+        if($job == $employerJob) {
+          return true;
+        }
+      }
+    }
+
     public function __construct(EntityManagerInterface $em)
     {
       parent::__construct($em, Job::class);

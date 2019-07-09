@@ -13,9 +13,7 @@ $(function() {
 
     $.post(path, {id: id}, function(result){
       deletedRow.fadeTo(400, 0, function() {
-        $(this).hide(400, function () {
-          $(this).remove();
-        });
+        $(this).remove();
       });
     });
   });
@@ -43,17 +41,10 @@ $(function() {
     "stripeClasses": []
   });
 
-  $("#my-jobs").DataTable( {
-    "searching": false,
-    "info": false,
-    "paging": false,
-    "stripeClasses": []
-  });
-
-  $("#my-applications").DataTable( {
-    'columnDefs': [ {
-      'targets': [4],
-      'orderable': false
+  $("#my-jobs, #my-applications").DataTable( {
+    "columnDefs": [ {
+      "targets": [4],
+      "orderable": false
     }],
     "searching": false,
     "info": false,
