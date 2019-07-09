@@ -32,9 +32,9 @@ class ApplicationService extends EntityService
       return $application;
     }
 
-    public function checkOwnership($candidate, $application_id)
+    public function checkOwnership($id, $candidate)
     {
-      $application = $this->find($application_id);
+      $application = $this->find($id);
       $candidateApplications = $candidate->getApplications();
       foreach($candidateApplications as $candidateApplication) {
         if($application == $candidateApplication) {

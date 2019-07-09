@@ -19,40 +19,37 @@ class Job
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $title;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Level")
-     * @ORM\JoinColumn(nullable=false)
      */
     private $level;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\City")
-     * @ORM\JoinColumn(nullable=false)
      */
     private $city;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     private $description;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="jobs")
-     * @ORM\JoinColumn(nullable=false)
      */
     private $employer;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $icon_filename;
+    private $icon_name;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=true)
      */
     private $date;
 
@@ -64,6 +61,7 @@ class Job
     public function __construct()
     {
         $this->applications = new ArrayCollection();
+        $this->setDate(new \DateTime('now'));
     }
 
     public function getId(): ?int
@@ -131,12 +129,12 @@ class Job
         return $this;
     }
 
-    public function getIconFilename(): ?string
+    public function getIconName(): ?string
     {
         return $this->icon_filename;
     }
 
-    public function setIconFilename(string $icon_filename): self
+    public function setIconName(string $icon_filename): self
     {
         $this->icon_filename = $icon_filename;
 

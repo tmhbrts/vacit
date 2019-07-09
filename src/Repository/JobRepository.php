@@ -28,6 +28,18 @@ class JobRepository extends ServiceEntityRepository
       return $job;
     }
 
+    public function create($employer)
+    {
+      $job = new Job();
+      $job->setEmployer($employer);
+
+      $em = $this->getEntityManager();
+      $em->persist($job);
+      $em->flush();
+
+      return $job;
+    }
+
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Job::class);

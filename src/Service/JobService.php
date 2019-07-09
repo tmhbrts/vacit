@@ -30,9 +30,14 @@ class JobService extends EntityService
       $this->rep->update($job, $params);
     }
 
+    public function create($employer)
+    {
+      return $this->rep->create($employer);
+    }
+
     public function checkOwnership($id, $employer)
     {
-      $job = $this->find($job_id);
+      $job = $this->find($id);
       $employerJobs = $employer->getJobs();
       foreach($employerJobs as $employerJob) {
         if($job == $employerJob) {

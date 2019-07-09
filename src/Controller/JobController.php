@@ -7,6 +7,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use App\Service\JobService;
 use App\Service\CityService;
 use App\Service\LevelService;
@@ -49,6 +50,18 @@ class JobController extends AbstractController
     }
 
     /**
+     * @Route("/job/new", name="new_job")
+     * @Template()
+     */
+    public function create()
+    {
+        $employer = $this->getUser();
+        $job = $this->js->create($employer);
+        $id = $job->getId();
+        return $this->redirectToRoute('edit_job', ['id' => $id]);
+    }
+
+    /**
      * @Route("job/{id<\d+>}/edit", name="edit_job")
      * @Template()
      */
@@ -74,8 +87,8 @@ class JobController extends AbstractController
     public function remove(Request $post)
     {
         $id = $post->get('id');
-        $user = $this->getUser();
-        if($this->js->checkOwnership($user, $id)) {
+        $employer = $this->getUser();
+        if($this->js->checkOwnership($id, $employer)) {
           $this->js->remove($id);
           return ['id' => $id];
         }
