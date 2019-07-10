@@ -3,6 +3,8 @@
 {% block title %}{{ job.title }} | VAC!T{% endblock %}
 
 {% block content %}
+<div class="cell medium-1"></div>
+<div class="cell medium-10 small-12">
   {% if job is not empty %}
     <div>{{ job.date|date("d-m-Y") }}</div>
     <h3>{{ job.title }} voor {{job.employer.name}}</h3>
@@ -39,8 +41,9 @@
         {% endfor %}
       </tbody>
     </table>
-
   {% else %}
     Vacature niet gevonden...
   {% endif %}
+</div>
+<div class="cell small-1"></div>
 {% endblock %}

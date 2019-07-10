@@ -3,6 +3,8 @@
 {% block title %}Mijn vacatures | VAC!T{% endblock %}
 
 {% block content %}
+<div class="cell medium-1"></div>
+<div class="cell medium-10 small-12">
   <a href="{{ path('new_job') }}">Nieuwe vacature</a>
   <table id="my-jobs" class="display" style="width:100%">
     <thead>
@@ -38,4 +40,6 @@
       {% endfor %}
     </tbody>
   </table>
+</div>
+<div class="cell small-1"></div>
 {% endblock %}

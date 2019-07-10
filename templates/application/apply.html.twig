@@ -9,6 +9,8 @@
 {% endblock %}
 
 {% block content %}
+<div class="cell medium-1"></div>
+<div class="cell medium-10 small-12">
   {% if application is not null %}
     <p>
       Bedankt voor je sollicitatie op de vacature voor {{ application.job.title }}
@@ -26,4 +28,6 @@
       voor een overzicht'.
     </p>
   {% endif %}
+</div>
+<div class="cell small-1"></div>
 {% endblock %}

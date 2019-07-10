@@ -3,6 +3,8 @@
 {% block title %}VAC!T - Vacaturesite voor IT{% endblock %}
 
 {% block content %}
+<div class="cell medium-1"></div>
+<div class="cell medium-10 small-12">
   {% if user is not null %}
     <form action="{{ path('edit_profile') }}" method="post">
       {% if is_granted('ROLE_CANDIDATE') %}
@@ -15,4 +17,6 @@
   {% else %}
     Je bent niet ingelogd...
   {% endif %}
+</div>
+<div class="cell small-1"></div>
 {% endblock %}

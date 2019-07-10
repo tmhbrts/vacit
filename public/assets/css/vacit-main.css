@@ -1,5 +1,15 @@
 body {
-  font: 17px sans-serif;
+
+}
+
+header {
+  background-color: #000 !important;
+}
+
+header a {
+  color: #fff !important;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 table {
@@ -14,7 +24,7 @@ th {
 }
 
 td {
-  border-bottom: 1px solid black;
-  padding-top: 1.2em;
-  padding-bottom: 6px;
+  border-bottom: 1px solid #000 !important;
+  padding-top: 1.2em !important;
+  padding-bottom: 6px !important;
 }

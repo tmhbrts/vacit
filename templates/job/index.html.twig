@@ -3,6 +3,8 @@
 {% block title %}Overzicht vacatures | VAC!T{% endblock %}
 
 {% block content %}
+<div class="cell medium-1"></div>
+<div class="cell medium-10 small-12">
   {% for job in jobs %}
     <div class="job">
       <h3>{{ job.level.level }} {{ job.title }}</h3>
@@ -17,4 +19,6 @@
       </ul>
     </div>
   {% endfor %}
+</div>
+<div class="cell small-1"></div>
 {% endblock %}

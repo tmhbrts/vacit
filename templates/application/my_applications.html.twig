@@ -5,6 +5,8 @@
 {% endblock %}
 
 {% block content %}
+<div class="cell medium-1"></div>
+<div class="cell medium-10 small-12">
   {% if applications is not empty %}
   <table id="my-applications" class="display" style="width:100%">
     <thead>
@@ -37,4 +39,6 @@
       Je hebt nog geen sollicitaties gedaan.
     </p>
   {% endif %}
+</div>
+<div class="cell small-1"></div>
 {% endblock %}

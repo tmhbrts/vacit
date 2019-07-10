@@ -9,6 +9,8 @@
 {% endblock %}
 
 {% block content %}
+<div class="cell medium-1"></div>
+<div class="cell medium-10 small-12">
   {% if applications is not empty %}
   <h3>Sollicitaties voor {{ applications|first.job.title }}</h3>
   <table id="job-applications" class="display" style="width:100%">
@@ -37,4 +39,6 @@
       Geen sollicitaties gevonden
     </h3>
   {% endif %}
+</div>
+<div class="cell small-1"></div>
 {% endblock %}

@@ -1,5 +1,12 @@
 $(function() {
 
+  $("#expand-menu").click(function() {
+    $(this).slideUp(400);
+    $("#menu").removeClass("hide-for-small-only");
+    $("#menu").hide();
+    $("#menu").slideToggle(400);
+  });
+
   $(".remove").click(function() {
     var deletedRow = $(this).closest("tr");
     var id = deletedRow.attr("id");
