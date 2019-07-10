@@ -1,5 +1,6 @@
 {% extends "@FOSUser/layout.html.twig" %}
 
 {% block fos_user_content %}
-    {{ include('@FOSUser/Security/login_content.html.twig') }}
+<h2>{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</h2>
+{{ include('@FOSUser/Security/login_content.html.twig') }}
 {% endblock fos_user_content %}
