@@ -18,14 +18,14 @@
     </p>
     <p>
       Wanneer de werkgever je heeft uitgenodigd voor een gesprek, zal dit zichtbaar
-      worden onder 'Mijn Sollicitaties'.
+      worden onder '<a href="{{ path('my_applications') }}">Mijn Sollicitaties</a>'.
       <br>
       We wensen je veel succes met je sollicitatie!
     </p>
   {% else %}
     <p>
-      Je hebt al eerder op deze vacature gesolliciteerd. Bekijk 'Mijn Sollicitaties
-      voor een overzicht'.
+      Je hebt al eerder op deze vacature gesolliciteerd. Bekijk
+      '<a href="{{ path('my_applications') }}">Mijn Sollicitaties</a>' voor een overzicht.
     </p>
   {% endif %}
 </div>

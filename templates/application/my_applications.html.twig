@@ -7,6 +7,7 @@
 {% block content %}
 <div class="cell medium-1"></div>
 <div class="cell medium-10 small-12">
+  <h2>Mijn Sollicitaties</h2>
   {% if applications is not empty %}
   <table id="my-applications" class="display" style="width:100%">
     <thead>
@@ -22,12 +23,16 @@
       {% for application in applications %}
         <tr id="{{ application.id }}">
           <td>{{ application.date|date("d-m-Y") }}</td>
-          <td>{{ application.job.title }}</td>
+          <td>
+            <a href="{{ path('job_show', { 'id': application.job.id }) }}">
+              {{ application.job.title }}
+            </a>
+          </td>
           <td>{{ application.job.employer.name }}</td>
           <td>{{ application.invitation|invitationStatus }}</td>
           <td>
             <button class="remove application">
-              verwijder
+              <i class="fas fa-trash"></i>
             </button>
           </td>
         </tr>

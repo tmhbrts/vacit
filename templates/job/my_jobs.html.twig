@@ -5,7 +5,11 @@
 {% block content %}
 <div class="cell medium-1"></div>
 <div class="cell medium-10 small-12">
-  <a href="{{ path('new_job') }}">Nieuwe vacature</a>
+  <h2>Mijn Vacatures</h2>
+  <a class="create" href="{{ path('new_job') }}">
+    <i class="fas fa-plus"></i>
+    Nieuw
+  </a>
   <table id="my-jobs" class="display" style="width:100%">
     <thead>
       <tr>
@@ -25,15 +29,18 @@
           <td>
             {{ job.applications|length }}
             {% if job.applications|length > 0 %}
-              <a href="{{ path('job_applications', { 'id': job.id }) }}">bekijk</a>
+              <a href="{{ path('job_applications', { 'id': job.id }) }}">
+
+                <i class="fas fa-arrow-right"></i>
+              </a>
             {% endif %}
           </td>
           <td>
             <a href="{{ path('edit_job', { 'id': job.id }) }}">
-              bewerk
+              <i class="fas fa-edit"></i>
             </a>
             <button class="remove job">
-              verwijder
+              <i class="fas fa-trash"></i>
             </button>
           </td>
         </tr>

@@ -1,5 +1,21 @@
-$(function() {
+function placeFooterToPageBottom() {
+  var footer = $("#footer");
+  var pos = footer.position();
+  var height = $(window).height();
+  height = height - pos.top;
+  height = height - footer.height();
+  if (height > 0) {
+    footer.css({
+      'margin-top': height + 'px'
+    });
+  }
+}
 
+$(window).resize(function() {
+  placeFooterToPageBottom();
+});
+
+$(function() {
   $("#expand-menu").click(function() {
     $(this).slideUp(400);
     $("#menu").removeClass("hide-for-small-only");
@@ -21,6 +37,7 @@ $(function() {
     $.post(path, {id: id}, function(result){
       deletedRow.fadeTo(400, 0, function() {
         $(this).remove();
+        placeFooterToPageBottom();
       });
     });
   });
@@ -64,4 +81,5 @@ $(function() {
     "stripeClasses": []
   });
 
+  placeFooterToPageBottom();
 });

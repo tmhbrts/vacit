@@ -1,15 +1,89 @@
-body {
+@import url("https://use.typekit.net/lck5lqt.css"); /*Bebas Neue from Adobe Fonts*/
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap');
 
+body a {
+  color: #F15A24 !important;
+}
+
+.main-content {
+  padding-bottom: 3em;
+}
+
+em {
+  font-style: normal;
+  color: #F15A24;
+}
+
+button, input[type="submit"] {
+  cursor: pointer;
+  color: #F15A24;
+}
+
+h2 {
+  font-family: bebas-neue, sans-serif !important;
+  color: #F15A24;
+}
+
+h4 {
+  font-family: bebas-neue, sans-serif !important;
 }
 
 header {
-  background-color: #000 !important;
+  background-color: #333 !important;
+  position: relative;
+  margin-bottom: 4em;
+}
+
+header #logo {
+  max-height: 7em;
+  margin: .5em;
 }
 
 header a {
   color: #fff !important;
   text-transform: uppercase;
   font-weight: bold;
+}
+
+footer {
+  background-color: #333 !important;
+  color: #fff;
+  position: relative;
+}
+
+footer .caption {
+  font-size: .9em;
+  font-style: italic;
+}
+
+footer #logo {
+  max-height: 5em;
+  margin: .5em;
+}
+
+footer h4 {
+  margin: 0;
+}
+
+.orangenament {
+  width: 100%;
+  position: absolute;
+  background-color: #F15A24;
+  height: 1.8em;
+}
+
+header .orangenament {
+  bottom: -1.8em;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 30%, 0% 100%);
+}
+
+footer .orangenament {
+  top: -1.8em;
+  clip-path: polygon(0% 70%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+header .shadow-wrap, footer .shadow-wrap {
+  filter: drop-shadow(0px 0px 10px #444);
 }
 
 table {
@@ -19,12 +93,78 @@ table {
 
 th {
   text-align: left;
+  text-transform: uppercase;
+  font-weight: bold;
   border: 0 !important;
-  padding: 10px 8px !important;
+  padding-left: 0 !important;
 }
 
 td {
   border-bottom: 1px solid #000 !important;
-  padding-top: 1.2em !important;
   padding-bottom: 6px !important;
+  padding-left: 0 !important;
+}
+
+td.level {
+  text-transform: uppercase;
+}
+
+@media only screen and (min-width: 640px) {
+  .cell .second-in-row {
+    padding-left: 1em;
+  }
+}
+
+input:not([type="submit"]), input:focus {
+  border: 0 !important;
+  box-shadow: none !important;
+  border-bottom: 2px solid #F15A24 !important;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 1.8rem;
+}
+@media only screen and (max-width: 640px) {
+  input:not([type="submit"]), input:focus {
+    font-size: 1.25rem;
+  }
+}
+
+input[type="date"] {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+button[type="submit"], input[type="submit"] {
+  border: 0;
+  font-family: bebas-neue, sans-serif !important;
+  font-size: 2rem;
+}
+@media only screen and (max-width: 640px) {
+  button[type="submit"], input[type="submit"] {
+    font-size: 1.25rem;
+  }
+}
+
+select {
+  border: 0 !important;
+  box-shadow: none !important;
+  border-bottom: 2px solid #F15A24 !important;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 1.8rem;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+@media only screen and (max-width: 640px) {
+  select {
+    font-size: 1.25rem;
+  }
+}
+
+#job-applications_length select {
+  font-size: 1rem;
+  width: auto !important;
+}
+
+.create {
+  font-family: bebas-neue, sans-serif !important;
+  font-size: 1.5rem;
 }

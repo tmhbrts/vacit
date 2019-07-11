@@ -6,14 +6,21 @@
 <div class="cell medium-1"></div>
 <div class="cell medium-10 small-12">
   {% if user is not null %}
+    <h2>Mijn Profiel</h2>
     <form action="{{ path('edit_profile') }}" method="post">
-      {% if is_granted('ROLE_CANDIDATE') %}
+      <div class="grid-x">
+        {% if is_granted('ROLE_CANDIDATE') %}
         {{ include('user/fields_candidate.html.twig') }}
-      {% elseif is_granted('ROLE_EMPLOYER') %}
+        {% elseif is_granted('ROLE_EMPLOYER') %}
         {{ include('user/fields_employer.html.twig') }}
-      {% endif %}
-    <input type="submit" value="Opslaan">
-  </form>
+        {% endif %}
+        <div class="cell small-12 text-right">
+          <button type="submit">
+            <i class="fas fa-arrow-right"></i> Opslaan
+          </button>
+        </div>
+      </div>
+    </form>
   {% else %}
     Je bent niet ingelogd...
   {% endif %}

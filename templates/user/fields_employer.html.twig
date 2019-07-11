@@ -1,25 +1,37 @@
-<label>bedrijfsnaam</label><br>
-<input type="text" name="name" value="{{user.name}}"><br>
+<div class="small-12">
+  <label>bedrijfsnaam</label>
+  <input type="text" name="name" value="{{user.name}}">
+</div>
 
-<label>email</label><br>
-<input type="text" name="email" value="{{user.email}}"><br>
+<div class="small-12">
+  <label>email</label>
+  <input type="text" name="email" value="{{user.email}}">
+</div>
 
-<label>telefoonnummer</label><br>
-<input type="tel" name="phone_number" value="{{user.phoneNumber}}"><br>
+<div class="small-12">
+  <label>telefoonnummer</label>
+  <input type="tel" name="phone_number" value="{{user.phoneNumber}}">
+</div>
 
-<label>adres</label><br>
-<input type="text" name="address" value="{{user.address}}"><br>
+<div class="small-12">
+  <label>adres</label>
+  <input type="text" name="address" value="{{user.address}}">
+</div>
 
-<label>postcode</label><br>
-<input type="text" name="postal_code" value="{{user.postalCode}}"><br>
+<div class="cell medium-3 small-12">
+  <label>postcode</label>
+  <input type="text" name="postal_code" value="{{user.postalCode}}">
+</div>
 
-<label>plaats</label><br>
-<select name="city">
-{% for city in cities %}
-  {% if city == user.city %}
-  <option value="{{city.id}}" selected>{{city.name}}</option>
-  {% else %}
-  <option value="{{city.id}}">{{city.name}}</option>
-  {% endif %}
-{% endfor %}
-</select><br>
+<div class="cell second-in-row medium-9 small-12">
+<label>plaats</label>
+  <select name="city">
+  {% for city in cities %}
+    {% if city == user.city %}
+    <option value="{{city.id}}" selected>{{city.name}}</option>
+    {% else %}
+    <option value="{{city.id}}">{{city.name}}</option>
+    {% endif %}
+  {% endfor %}
+  </select>
+</div>

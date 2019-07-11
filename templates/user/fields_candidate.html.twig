@@ -1,31 +1,40 @@
-<label>voornaam</label><br>
-<input type="text" name="first_name" value="{{user.firstName}}"><br>
-
-<label>achternaam</label><br>
-<input type="text" name="name" value="{{user.name}}"><br>
-
-<label>email</label><br>
-<input type="text" name="email" value="{{user.email}}"><br>
-
-<label>geboortedatum</label><br>
-<input type="date" name="date_of_birth" value="{{user.dateOfBirth|date('Y-m-d')}}"><br>
-
-<label>telefoonnummer</label><br>
-<input type="tel" name="phone_number" value="{{user.phoneNumber}}"><br>
-
-<label>adres</label><br>
-<input type="text" name="address" value="{{user.address}}"><br>
-
-<label>postcode</label><br>
-<input type="text" name="postal_code" value="{{user.postalCode}}"><br>
-
-<label>woonplaats</label><br>
-<select name="city">
-{% for city in cities %}
-  {% if city == user.city %}
-  <option value="{{city.id}}" selected>{{city.name}}</option>
-  {% else %}
-  <option value="{{city.id}}">{{city.name}}</option>
-  {% endif %}
-{% endfor %}
-</select><br>
+<div class="cell medium-3 small-12">
+  <label>voornaam</label>
+  <input type="text" name="first_name" value="{{user.firstName}}">
+</div>
+<div class="cell second-in-row medium-9 small-12">
+  <label>achternaam</label>
+  <input type="text" name="name" value="{{user.name}}">
+</div>
+<div class="small-12">
+  <label>email</label>
+  <input type="text" name="email" value="{{user.email}}">
+</div>
+<div class="cell medium-3 small-12">
+  <label>geboortedatum</label>
+  <input type="date" name="date_of_birth" value="{{user.dateOfBirth|date('Y-m-d')}}">
+</div>
+<div class="cell second-in-row medium-9 small-12">
+  <label>telefoonnummer</label>
+  <input type="tel" name="phone_number" value="{{user.phoneNumber}}">
+</div>
+<div class="small-12">
+  <label>adres</label>
+  <input type="text" name="address" value="{{user.address}}">
+</div>
+<div class="cell medium-3 small-12">
+  <label>postcode</label>
+  <input type="text" name="postal_code" value="{{user.postalCode}}">
+</div>
+<div class="cell second-in-row medium-9 small-12">
+  <label>woonplaats</label>
+  <select name="city">
+  {% for city in cities %}
+    {% if city == user.city %}
+    <option value="{{city.id}}" selected>{{city.name}}</option>
+    {% else %}
+    <option value="{{city.id}}">{{city.name}}</option>
+    {% endif %}
+  {% endfor %}
+  </select>
+</div>

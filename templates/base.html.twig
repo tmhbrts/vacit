@@ -10,12 +10,12 @@
     <body>
       <header>
         <div class="grid-x">
-          <div class="cell small-3">
+          <div class="cell small-3 align-self-top">
             <a href="{{ path('homepage') }}">
-              [LOGO]
+              <img id="logo" src="{{ asset('assets/img/logo_white.png') }}">
             </a>
           </div>
-          <div class="cell small-9">
+          <div class="cell small-9 align-self-bottom">
             <ul class="vertical medium-horizontal menu align-right hide-for-small-only" id="menu">
               {{ include('nav.html.twig') }}
             </ul>
@@ -26,16 +26,44 @@
             </ul>
           </div>
         </div>
+        <div class="shadow-wrap">
+          <div class="orangenament"></div>
+        </div>
       </header>
 
-      <div class="grid-x grid-padding-x grid-padding-y">
+      <div class="grid-x grid-padding-x main-content">
         {% block content %}{% endblock %}
       </div>
 
-      <footer>
-        <div class="logo">[LOGO]</div>
-        <div>[ADRES]</div>
-        <div>[PRIVACY]</div>
+      <footer id="footer">
+        <div class="shadow-wrap">
+          <div class="orangenament"></div>
+        </div>
+        <div class="grid-x grid-padding-x">
+          <div class="cell medium-shrink small-6 align-self-middle">
+            <img id="logo" src="{{ asset('assets/img/logo_white.png') }}">
+          </div>
+          <div class="cell medium-shrink small-6 align-self-middle">
+            <div class="grid-x grid-padding-x grid-padding-y">
+              <div class="cell medium-shrink small-12">
+                <h4>Adres</h4>
+                <span class="caption">
+                  Poststraat 2B
+                </span>
+                <br>
+                <span class="caption">
+                  6135 KR Sittard
+                </span>
+              </div>
+              <div class="cell medium-shrink small-12">
+                <h4>Privacy</h4>
+                <span class="caption">
+                  Deze is min of meer gewaarborgd
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
       </footer>
       <script type="text/javascript" src="{{ asset('assets/js/jquery.js') }}"></script>
       <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>

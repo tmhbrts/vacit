@@ -8,21 +8,29 @@
   {% if job is not empty %}
     <div>{{ job.date|date("d-m-Y") }}</div>
     <h3>{{ job.title }} voor {{job.employer.name}}</h3>
-    <ul>
-      <li>Niveau: {{ job.level.level }}</li>
-      <li>Plaats: {{ job.city.name }}</li>
-    </ul>
+
+    <div class="grid-x">
+      <div class="cell auto">
+        <h4><em>Niveau:</em> {{ job.level.level }}</h4>
+      </div>
+      <div class="cell auto text-right">
+        <h4><em><i class="fas fa-map-marker-alt"></i></em> {{ job.city.name }}</h4>
+      </div>
+    </div>
 
     <p>{{ job.description }}</p>
 
     {% if is_granted('ROLE_CANDIDATE') %}
       <form action="{{ path('apply') }}" method="post">
         <input type="hidden" name="id" value="{{job.id}}">
-        <input type="submit" value="Solliciteer direct">
+        <button type="submit">
+          <i class="fas fa-arrow-right"></i> Solliciteer direct
+        </button>
       </form>
+      <br>
     {% endif %}
 
-    <h4>Meer vacatures van {{job.employer.name}}:</h4>
+    <h4>Meer vacatures van <em>{{job.employer.name}}</em></h4>
     <table id="employer-jobs" class="display" style="width:100%">
       <thead>
         <tr>
@@ -35,8 +43,12 @@
         {% for job in job.employer.jobs %}
           <tr>
             <td>{{ job.date|date("d-m-Y") }}</td>
-            <td>{{ job.title }}</td>
-            <td>{{ job.level.level }}</td>
+            <td>
+              <a href="{{ path('job_show', { 'id': job.id }) }}">
+                {{ job.title }}
+              </a>
+            </td>
+            <td class="level">{{ job.level.level }}</td>
           </tr>
         {% endfor %}
       </tbody>
