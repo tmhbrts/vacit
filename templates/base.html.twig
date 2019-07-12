@@ -3,8 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}{% endblock %}</title>
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.5.3/css/foundation.min.css">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/jquery.dataTables.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/foundation.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/richtext.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vacit-main.css') }}">
     </head>
@@ -13,7 +13,7 @@
         <div class="grid-x">
           <div class="cell small-3 align-self-top">
             <a href="{{ path('homepage') }}">
-              <img id="logo" src="{{ asset('assets/img/logo_white.png') }}">
+              <img id="logo" src="{{ asset('assets/images/logo_white.png') }}">
             </a>
           </div>
           <div class="cell small-9 align-self-bottom">
@@ -42,7 +42,7 @@
         </div>
         <div class="grid-x grid-padding-x">
           <div class="cell medium-shrink small-6 align-self-middle">
-            <img id="logo" src="{{ asset('assets/img/logo_white.png') }}">
+            <img id="logo" src="{{ asset('assets/images/logo_white.png') }}">
           </div>
           <div class="cell medium-shrink small-6 align-self-middle">
             <div class="grid-x grid-padding-x grid-padding-y">
@@ -68,7 +68,7 @@
       </footer>
       <script type="text/javascript" src="{{ asset('assets/js/jquery.js') }}"></script>
       <script type="text/javascript" src="{{ asset('assets/js/jquery.richtext.js') }}"></script>
-      <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+      <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
       <script type="text/javascript" src="{{ asset('assets/js/foundation.min.js') }}"></script>
       <script src="https://kit.fontawesome.com/ea1751526e.js"></script>
       <script>
