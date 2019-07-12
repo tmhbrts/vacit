@@ -29,7 +29,7 @@
             </a>
           </td>
           <td>{{ application.job.employer.name }}</td>
-          <td>{{ application.invitation|invitationStatus }}</td>
+          <td class="invitation">{{ application.invitation|invitationStatus|raw }}</td>
           <td>
             <button class="remove application">
               <i class="fas fa-trash"></i>

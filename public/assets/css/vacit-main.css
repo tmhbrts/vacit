@@ -109,6 +109,11 @@ td.level {
   text-transform: uppercase;
 }
 
+td.invitation {
+  color: #F15A24;
+  font-size: 1.4em;
+}
+
 @media only screen and (min-width: 640px) {
   .cell .second-in-row {
     padding-left: 1em;

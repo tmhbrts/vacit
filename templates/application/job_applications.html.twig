@@ -29,7 +29,7 @@
             {{ application.candidate.name }},
             {{ application.candidate.firstName}}
           </td>
-          <td>{{ application.invitation|inviteAction|raw }}</td>
+          <td class="invitation">{{ application.invitation|inviteAction|raw }}</td>
         </tr>
       {% endfor %}
     </tbody>
