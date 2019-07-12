@@ -52,6 +52,27 @@ $(function() {
     });
   });
 
+  $("textarea").richText({
+    underline: false,
+    leftAlign: false,
+    centerAlign: false,
+    rightAlign: false,
+    justify: false,
+    ol: false,
+    ul: false,
+    heading: false,
+    fonts: false,
+    fontColor: false,
+    fontSize: false,
+    imageUpload: false,
+    fileUpload: false,
+    videoEmbed: false,
+    urls: false,
+    table: false,
+    removeStyles: false,
+    code: false,
+  });
+
   $.extend(true, $.fn.dataTable.defaults, {
     "language": {
       "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Dutch.json"
