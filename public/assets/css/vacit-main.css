@@ -6,7 +6,7 @@ body a {
 }
 
 .main-content {
-  padding-bottom: 3em;
+  padding-bottom: 4em;
 }
 
 em {
@@ -162,6 +162,11 @@ select {
   select {
     font-size: 1.25rem;
   }
+}
+
+.richText {
+  border: 1px solid #ddd;
+  margin-bottom: 1em;
 }
 
 #job-applications_length select {

@@ -18,7 +18,7 @@
       </div>
     </div>
 
-    <p>{{ job.description }}</p>
+    <p>{{ job.description|raw }}</p>
 
     {% if is_granted('ROLE_CANDIDATE') %}
       <form action="{{ path('apply') }}" method="post">

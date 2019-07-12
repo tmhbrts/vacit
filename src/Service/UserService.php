@@ -14,14 +14,19 @@ class UserService
 
     public function updateProfile($user, $params)
     {
-        $user->setFirstName($params["first_name"]);
+        if(isset($params["first_name"])) {
+          $user->setFirstName($params["first_name"]);
+        }
         $user->setName($params["name"]);
         $user->setEmail($params["email"]);
-        $user->setDateOfBirth(new \DateTime($params['date_of_birth']));
+        if(isset($params["first_name"])) {
+          $user->setDateOfBirth(new \DateTime($params['date_of_birth']));
+        }
         $user->setPhoneNumber($params["phone_number"]);
         $user->setAddress($params["address"]);
         $user->setPostalCode($params["postal_code"]);
         $user->setCity($this->cs->find($params["city"]));
+        $user->setBio($params["bio"]);
 
         $this->um->updateUser($user);
     }
