@@ -23,6 +23,11 @@ h2 {
   font-family: bebas-neue, sans-serif !important;
   color: #F15A24;
 }
+@media only screen and (max-width: 640px) {
+  h2 {
+    font-size: 1.75rem !important; /* instead of foundation default 1.25*/
+  }
+}
 
 h4 {
   font-family: bebas-neue, sans-serif !important;
@@ -145,7 +150,7 @@ button[type="submit"], input[type="submit"] {
 }
 @media only screen and (max-width: 640px) {
   button[type="submit"], input[type="submit"] {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
   }
 }
 
@@ -177,4 +182,14 @@ select {
 .create {
   font-family: bebas-neue, sans-serif !important;
   font-size: 1.5rem;
+}
+
+button#upload-cv {
+  font-family: bebas-neue, sans-serif !important;
+  font-size: 2rem;
+}
+@media only screen and (max-width: 640px) {
+  button#upload-cv {
+    font-size: 1.5rem;
+  }
 }

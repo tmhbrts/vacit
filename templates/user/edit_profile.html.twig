@@ -14,11 +14,6 @@
         {% elseif is_granted('ROLE_EMPLOYER') %}
         {{ include('user/fields_employer.html.twig') }}
         {% endif %}
-        <div class="cell small-12 text-right">
-          <button type="submit">
-            <i class="fas fa-arrow-right"></i> Opslaan
-          </button>
-        </div>
       </div>
     </form>
   {% else %}

@@ -50,3 +50,26 @@
   <label>Motivatie</label>
   <textarea name="bio">{{user.bio}}</textarea>
 </div>
+
+<div class="cell small-6 text-left">
+  <button id="upload-cv">
+    <i class="fas fa-file-upload"></i> Upload CV
+  </button>
+  <div id="msgBox">
+    {% if user.cvFilename is null %}
+    Geen bestand geüpload. (doc, docx, pdf, max. 5mb)
+    {% else %}
+    <strong>{{ user.cvFilename }} </strong>
+    <a href="../upload_files/{{ user.cvFilename }}">
+      (bekijk)
+    </a>
+    {% endif %}
+  </div>
+  <input id="input-cv" type="hidden" name="cv_filename" value="{{ user.cvFilename }}">
+</div>
+
+<div class="cell small-6 text-right">
+  <button type="submit">
+    <i class="fas fa-arrow-right"></i> Opslaan
+  </button>
+</div>

@@ -103,4 +103,51 @@ $(function() {
   });
 
   placeFooterToPageBottom();
+
+  //---scripts for Simple Ajax Uploader---//
+  function escapeTags( str ) {
+    return String( str ).replace( /&/g, '&amp;' )
+                        .replace( /"/g, '&quot;' )
+                        .replace( /'/g, '&#39;' )
+                        .replace( /</g, '&lt;' )
+                        .replace( />/g, '&gt;' );
+  }
+
+  var btn = $('#upload-cv'),
+      msgBox = $('#msgBox'),
+      input = $("#input-cv");
+
+  var uploader = new ss.SimpleUpload({
+        button: btn,
+        url: "{{ path('upload') }}",
+        name: 'uploadfile',
+        multipart: true,
+        responseType: 'json',
+        onSubmit: function() {
+          msgBox.html('');
+          btn.html('uploaden...');
+        },
+        onComplete: function( filename, response ) {
+          btn.html('<i class="fas fa-file-upload"></i> Upload CV');
+
+          if ( !response ) {
+            msgBox.html('Kan bestand niet uploaden');
+            return;
+          }
+          if ( response.success === true ) {
+            msgBox.html('<strong>' + escapeTags( filename ) + '</strong><br>' +
+            'Sla je profiel op om dit bestand te gebruiken.');
+            input.val(escapeTags( filename ));
+          } else {
+            if ( response.msg )  {
+              msgBox.html(escapeTags( response.msg ));
+            } else {
+              msgBox.html('Fout opgetreden, upload mislukt.');
+            }
+          }
+        },
+        onError: function() {
+          msgBox.html('Kan bestand niet uploaden');
+        }
+  	});
 });
