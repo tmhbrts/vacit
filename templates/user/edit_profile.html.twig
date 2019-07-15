@@ -17,7 +17,7 @@
   {% if user is not null %}
     <h2>Mijn Profiel</h2>
     <form action="{{ path('edit_profile') }}" method="post">
-      <input id="input-picture" type="hidden" name="picture_filename" value="{{ user.cvFilename }}">
+      <input id="input-picture" type="hidden" name="picture_filename" value="{{ user.pictureFilename }}">
       <div class="grid-x">
         {% if is_granted('ROLE_CANDIDATE') %}
         {{ include('user/fields_candidate.html.twig') }}

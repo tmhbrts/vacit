@@ -28,7 +28,11 @@
               {{ application.job.title }}
             </a>
           </td>
-          <td>{{ application.job.employer.name }}</td>
+          <td>
+            <a href="{{ path('show_employer', { 'id': application.job.employer.id }) }}">
+              {{ application.job.employer.name }}
+            </a>
+          </td>
           <td class="invitation">{{ application.invitation|invitationStatus|raw }}</td>
           <td>
             <button class="remove application">

@@ -35,7 +35,9 @@ class UserService
         $user->setPostalCode($params["postal_code"]);
         $user->setCity($this->cs->find($params["city"]));
         $user->setBio($params["bio"]);
-        $user->setCvFilename($params["cv_filename"]);
+        if(isset($params["cv_filename"])) {
+          $user->setCvFilename($params["cv_filename"]);
+        }
 
         $this->um->updateUser($user);
     }

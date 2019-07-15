@@ -23,8 +23,18 @@ class UserController extends AbstractController
      */
     public function showCandidate($id)
     {
-        $user = $this->us->find($id);
-        return ['user' => $user];
+        $candidate = $this->us->find($id);
+        return ['user' => $candidate];
+    }
+
+    /**
+     * @Route("/employer/{id<\d+>}", name="show_employer")
+     * @Template()
+     */
+    public function showEmployer($id)
+    {
+        $employer = $this->us->find($id);
+        return ['user' => $employer];
     }
 
     /**
