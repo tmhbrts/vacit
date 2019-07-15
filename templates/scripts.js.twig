@@ -52,6 +52,16 @@ $(function() {
     });
   });
 
+  {% if user is defined and user.pictureFilename is not null %}
+    $("#upload-picture").css({
+      "background-image": "url('{{ asset('upload_files') }}/{{ user.pictureFilename }}')",
+      "background-size": "cover"
+    });
+    $("#upload-picture .text").css({
+      "text-shadow": "0px 0px 3px #000"
+    })
+  {% endif %}
+
   $("textarea").richText({
     underline: false,
     leftAlign: false,
@@ -113,41 +123,76 @@ $(function() {
                         .replace( />/g, '&gt;' );
   }
 
-  var btn = $('#upload-cv'),
-      msgBox = $('#msgBox'),
-      input = $("#input-cv");
 
-  var uploader = new ss.SimpleUpload({
-        button: btn,
-        url: "{{ path('upload') }}",
-        name: 'uploadfile',
+  var picture_uploader = new ss.SimpleUpload({
+        button: $('#upload-picture'),
+        url: "{{ path('upload_picture') }}",
+        name: 'uploadpicture',
         multipart: true,
         responseType: 'json',
         onSubmit: function() {
-          msgBox.html('');
-          btn.html('uploaden...');
+          $('#upload-picture .text').html('uploaden...');
         },
         onComplete: function( filename, response ) {
-          btn.html('<i class="fas fa-file-upload"></i> Upload CV');
+          $('#upload-picture .text').html('<i class="fas fa-upload"></i>upload<br>afbeelding');
+          $("#upload-picture .text").css({
+            "text-shadow": "0px 0px 3px #000"
+          })
 
           if ( !response ) {
-            msgBox.html('Kan bestand niet uploaden');
+            $('#upload-picture .text').html('<i class="fas fa-times"></i> upload<br>mislukt');
             return;
           }
           if ( response.success === true ) {
-            msgBox.html('<strong>' + escapeTags( filename ) + '</strong><br>' +
-            'Sla je profiel op om dit bestand te gebruiken.');
-            input.val(escapeTags( filename ));
+            $('#upload-picture').css({
+              "background-image": "url('{{ asset('upload_files') }}/"+ escapeTags( filename ) +"')",
+              "background-size": "cover"
+            });
+            $("#input-picture").val(escapeTags( filename ));
           } else {
             if ( response.msg )  {
-              msgBox.html(escapeTags( response.msg ));
+              $('#upload-picture .text').html(escapeTags( response.msg ));
             } else {
-              msgBox.html('Fout opgetreden, upload mislukt.');
+              $('#upload-picture .text').html('Fout opgetreden, upload mislukt.');
             }
           }
         },
         onError: function() {
-          msgBox.html('Kan bestand niet uploaden');
+          $('#upload-picture .text').html('<i class="fas fa-times"></i> upload<br>mislukt');
         }
   	});
+
+    var cv_uploader = new ss.SimpleUpload({
+          button: $('#upload-cv'),
+          url: "{{ path('upload_cv') }}",
+          name: 'uploadcv',
+          multipart: true,
+          responseType: 'json',
+          onSubmit: function() {
+            $('#uploadMsg').html('');
+            $('#upload-cv').html('uploaden...');
+          },
+          onComplete: function( filename, response ) {
+            $('#upload-cv').html('<i class="fas fa-file-upload"></i> Upload CV');
+
+            if ( !response ) {
+              $('#uploadMsg').html('Kan bestand niet uploaden');
+              return;
+            }
+            if ( response.success === true ) {
+              $('#uploadMsg').html('<strong>' + escapeTags( filename ) + '</strong><br>' +
+              'Sla je profiel op om dit bestand te gebruiken.');
+              $("#input-cv").val(escapeTags( filename ));
+            } else {
+              if ( response.msg )  {
+                $('#uploadMsg').html(escapeTags( response.msg ));
+              } else {
+                $('#uploadMsg').html('Fout opgetreden, upload mislukt.');
+              }
+            }
+          },
+          onError: function() {
+            $('#uploadMsg').html('Kan bestand niet uploaden');
+          }
+    	});
 });

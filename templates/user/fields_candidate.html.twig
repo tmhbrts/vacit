@@ -55,12 +55,12 @@
   <button id="upload-cv">
     <i class="fas fa-file-upload"></i> Upload CV
   </button>
-  <div id="msgBox">
+  <div id="uploadMsg">
     {% if user.cvFilename is null %}
     Geen bestand geüpload. (doc, docx, pdf, max. 5mb)
     {% else %}
     <strong>{{ user.cvFilename }} </strong>
-    <a href="../upload_files/{{ user.cvFilename }}">
+    <a href="{{ asset('upload_files') }}/{{ user.cvFilename }}" target="_blank">
       (bekijk)
     </a>
     {% endif %}

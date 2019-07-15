@@ -14,6 +14,9 @@ class UserService
 
     public function updateProfile($user, $params)
     {
+        if(isset($params["picture_filename"])) {
+          $user->setPictureFilename($params["picture_filename"]);
+        }
         if(isset($params["first_name"])) {
           $user->setFirstName($params["first_name"]);
         }

@@ -35,12 +35,31 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/upload.json", name="upload")
+     * @Route("/upload-picture", name="upload_picture")
      */
-    public function upload()
+    public function uploadPicture()
     {
       $upload_dir = 'upload_files/';
-      $uploader = new UploadService('uploadfile');
+      $uploader = new UploadService('uploadpicture');
+
+      $result = $uploader->handleUpload($upload_dir, ['jpg', 'jpeg', 'png']);
+
+      if ($result) {
+        $status = ['success' => true];
+        return new JsonResponse($status);
+      } else {
+        $status = ['success' => false, 'msg' => $uploader->getErrorMsg()];
+        return new JsonResponse($status);
+      }
+    }
+
+    /**
+     * @Route("/upload-cv", name="upload_cv")
+     */
+    public function uploadCv()
+    {
+      $upload_dir = 'upload_files/';
+      $uploader = new UploadService('uploadcv');
 
       $result = $uploader->handleUpload($upload_dir, ['pdf', 'doc', 'docx']);
 
