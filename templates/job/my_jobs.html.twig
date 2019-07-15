@@ -30,7 +30,6 @@
             {{ job.applications|length }}
             {% if job.applications|length > 0 %}
               <a href="{{ path('job_applications', { 'id': job.id }) }}">
-
                 <i class="fas fa-arrow-right"></i>
               </a>
             {% endif %}

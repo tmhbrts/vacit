@@ -5,17 +5,73 @@ body a {
   color: #F15A24 !important;
 }
 
+.homepage {
+  background-color: #F15A24;
+}
+
+.homepage a {
+  color: #fff !important;
+}
+
+.homepage .platform {
+  background-color: #333;
+  width: 6.6em;
+  height: 6.6em;
+  margin-right: 5%;
+  clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0 50%);
+}
+
+.homepage .date {
+  font-size: .8em;
+}
+
+.homepage .job {
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+}
+@media only screen and (max-width: 640px) {
+  .homepage .job {
+    margin-bottom: 0;
+  }
+}
+
+.homepage .title {
+  color: #fff !important;
+  font-family: sans-serif !important;
+  margin: 0 !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.homepage .description {
+  font-style: italic;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.homepage .goto {
+  padding-left: 1rem;
+  color: #fff;
+  font-size: 4em;
+}
+
 .main-content {
   padding-bottom: 4em;
 }
 
-em {
-  font-style: normal;
+button {
+  cursor: pointer;
   color: #F15A24;
 }
 
-button, input[type="submit"] {
-  cursor: pointer;
+em {
+  font-style: normal;
   color: #F15A24;
 }
 
@@ -176,6 +232,7 @@ button[type="submit"], input[type="submit"] {
   border: 0;
   font-family: bebas-neue, sans-serif !important;
   font-size: 2rem;
+  color: #F15A24;
 }
 @media only screen and (max-width: 640px) {
   button[type="submit"], input[type="submit"] {

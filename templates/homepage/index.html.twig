@@ -2,23 +2,30 @@
 
 {% block title %}Vacaturesite voor IT | VAC!T{% endblock %}
 
+{% block body_class %}homepage{% endblock %}
+
 {% block content %}
-<div class="cell medium-1"></div>
-<div class="cell medium-10 small-12">
-  {% for job in jobs %}
-    <div class="job">
-      <h3>{{ job.level.level }} {{ job.title }}</h3>
-      <ul>
-        <li>{{ job.employer.name }}</li>
-        <li>{{ job.city.name }}</li>
-        <li>
+<div class="cell medium-3"></div>
+<div class="cell medium-9 small-12">
+  <div class="grid-x">
+    {% for job in jobs %}
+      <div class="cell medium-2 small-3">
+        <div class="platform float-right"></div>
+      </div>
+      <div class="cell medium-8 small-9 job">
+        <span class="date">{{ job.date|date("d-m-Y") }}</span>
+        <h4 class="title">{{ job.level.level }} {{ job.title }}</h4>
+        <p class="description">{{ job.description|raw }}</p>
+      </div>
+      <div class="cell small-3 show-for-small-only"></div>
+      <div class="cell medium-2 small-9 align-self-middle">
+        <div class="goto">
           <a href="{{ path('job_show', { 'id': job.id }) }}">
-            go to
+            <i class="fas fa-arrow-right"></i>
           </a>
-        </li>
-      </ul>
-    </div>
-  {% endfor %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
 </div>
-<div class="cell small-1"></div>
 {% endblock %}
