@@ -26,8 +26,10 @@
         <tr id="{{ application.id }}">
           <td>{{ application.date|date("d-m-Y") }}</td>
           <td>
-            {{ application.candidate.name }},
-            {{ application.candidate.firstName}}
+            <a href="{{ path('show_candidate', { 'id': application.candidate.id }) }}">
+              {{ application.candidate.name }},
+              {{ application.candidate.firstName}}
+            </a>
           </td>
           <td class="invitation">{{ application.invitation|inviteAction|raw }}</td>
         </tr>

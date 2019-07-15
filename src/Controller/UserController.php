@@ -18,6 +18,16 @@ class UserController extends AbstractController
     private $cs;
 
     /**
+     * @Route("/candidate/{id<\d+>}", name="show_candidate")
+     * @Template()
+     */
+    public function showCandidate($id)
+    {
+        $user = $this->us->find($id);
+        return ['user' => $user];
+    }
+
+    /**
      * @Route("/edit-profile", name="edit_profile")
      * @Template()
      */

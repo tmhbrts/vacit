@@ -126,7 +126,6 @@ td.invitation {
 }
 
 .user-picture {
-  cursor: pointer;
   background-color: #c7c7c7;
   padding-top: 100%; /* 1:1 Aspect Ratio */
   position: relative;
@@ -142,6 +141,17 @@ td.invitation {
   padding-top: 50%;
   transform: translateY(-1.5em);
   text-align: center;
+}
+
+.user-info {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 1.8em;
+  border-bottom: 1px solid #c7c7c7;
+}
+
+.cv-link {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 1.8em;
 }
 
 input:not([type="submit"]), input:focus {

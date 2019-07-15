@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}VAC!T - Vacaturesite voor IT{% endblock %}
+
+{% block content %}
+<div class="cell medium-2 small-3">
+  {% if user.pictureFilename is null %}
+    <div class="user-picture">
+      <div class="text">
+        <i class="fas fa-user"></i> geen<br>
+        afbeelding
+      </div>
+    </div>
+  {% else %}
+    <div class="user-picture"
+         style="background-image: url('{{ asset('upload_files') }}/{{ user.pictureFilename }}');
+                background-size: cover"></div>
+  {% endif %}
+</div>
+<div class="cell medium-9 small-9">
+  <h2>{{user.firstName}} {{user.name}}</h2>
+  <div class="grid-x">
+    <div class="small-12">
+      <label>email</label>
+      <div class="user-info">{{user.email}}</div>
+    </div>
+
+    <div class="cell medium-4 small-12">
+      <label>geboortedatum</label>
+      <div class="user-info">{{user.dateOfBirth|date('Y-m-d')}}</div>
+    </div>
+
+    <div class="cell second-in-row medium-8 small-12">
+      <label>telefoonnummer</label>
+      <div class="user-info">{{user.phoneNumber}}</div>
+    </div>
+
+    <div class="small-12">
+      <label>adres</label>
+      <div class="user-info">{{user.address}}</div>
+    </div>
+
+    <div class="cell medium-3 small-12">
+      <label>postcode</label>
+      <div class="user-info">{{user.postalCode}}</div>
+    </div>
+
+    <div class="cell second-in-row medium-9 small-12">
+      <label>woonplaats</label>
+      <div class="user-info">{{user.city.name}}</div>
+    </div>
+
+    <div class="cell small-12">
+      <br>
+      <label>Motivatie</label>
+      <div>{{user.bio|raw}}</div>
+    </div>
+
+    <div class="cell shrink">
+      <div class="cv-link">
+        {% if user.cvFilename is null %}
+          Geen cv geüpload.
+        {% else %}
+          <a href="{{ asset('upload_files') }}/{{ user.cvFilename }}" target="_blank">
+            <i class="fas fa-file-download"></i>
+            Download CV
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="cell small-1"></div>
+{% endblock %}

@@ -12,6 +12,11 @@ class UserService
     private $encoder;
     private $cs;
 
+    public function find($id)
+    {
+      return $this->um->findUserBy(['id'=>$id]);
+    }
+
     public function updateProfile($user, $params)
     {
         if(isset($params["picture_filename"])) {
