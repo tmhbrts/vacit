@@ -236,7 +236,7 @@ td.level {
   text-transform: uppercase;
 }
 
-td.invitation {
+.fa-check {
   color: #F15A24;
   font-size: 1.4em;
 }
