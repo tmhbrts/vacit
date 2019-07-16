@@ -24,7 +24,7 @@
     <tbody>
       {% for application in applications %}
         <tr id="{{ application.id }}">
-          <td>{{ application.date|date("d-m-Y") }}</td>
+          <td>{{ application.date|date("Y-m-d") }}</td>
           <td>
             <a href="{{ path('show_candidate', { 'id': application.candidate.id }) }}">
               {{ application.candidate.name }},
