@@ -58,6 +58,11 @@ class Job
      */
     private $applications;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Platform")
+     */
+    private $platform;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -182,5 +187,17 @@ class Job
     {
         $this->applications = new ArrayCollection();
         $this->setDate(new \DateTime('now'));
+    }
+
+    public function getPlatform(): ?platform
+    {
+        return $this->platform;
+    }
+
+    public function setPlatform(?platform $platform): self
+    {
+        $this->platform = $platform;
+
+        return $this;
     }
 }

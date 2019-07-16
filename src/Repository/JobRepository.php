@@ -17,6 +17,7 @@ class JobRepository extends ServiceEntityRepository
     public function update($job, $params)
     {
         $job->setTitle($params["title"]);
+        $job->setPlatform($params["platform"]);
         $job->setLevel($params["level"]);
         $job->setCity($params["city"]);
         $job->setDescription($params["description"]);

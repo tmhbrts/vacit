@@ -10,7 +10,9 @@
   <div class="grid-x">
     {% for job in jobs %}
       <div class="cell medium-2 small-3">
-        <div class="platform float-right"></div>
+        <div class="platform float-right">
+          <i class="{{ job.platform.icon }}"></i>
+        </div>
       </div>
       <div class="cell medium-8 small-9 job">
         <span class="date">{{ job.date|date("d-m-Y") }}</span>

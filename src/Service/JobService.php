@@ -5,11 +5,13 @@ namespace App\Service;
 use App\Entity\Job;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Service\EntityService;
+use App\Service\PlatformService;
 use App\Service\LevelService;
 use App\Service\CityService;
 
 class JobService extends EntityService
 {
+    private $ps;
     private $ls;
     private $cs;
 
@@ -25,6 +27,7 @@ class JobService extends EntityService
     public function update($id, $params)
     {
         $job = $this->find($id);
+        $params["platform"] = $this->ps->find($params["platform"]);
         $params["level"] = $this->ls->find($params["level"]);
         $params["city"] = $this->cs->find($params["city"]);
         $this->rep->update($job, $params);
@@ -47,9 +50,11 @@ class JobService extends EntityService
     }
 
     public function __construct(EntityManagerInterface $em,
+                                PlatformService $ps,
                                 LevelService $ls,
                                 CityService $cs)
     {
+        $this->ps = $ps;
         $this->ls = $ls;
         $this->cs = $cs;
         parent::__construct($em, Job::class);

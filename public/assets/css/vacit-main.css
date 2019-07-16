@@ -15,8 +15,13 @@ body a {
 
 .homepage .platform {
   background-color: #333;
-  width: 6.6em;
-  height: 6.6em;
+  color: #fff;
+  font-size: 4em;
+  align-content: center;
+  text-align: center;
+  line-height: 1.65em;
+  width: 6.6rem;
+  height: 6.6rem;
   margin-right: 5%;
   clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0 50%);
 }

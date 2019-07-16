@@ -11,12 +11,14 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use App\Service\JobService;
 use App\Service\CityService;
 use App\Service\LevelService;
+use App\Service\PlatformService;
 
 class JobController extends AbstractController
 {
     private $js;
     private $cs;
     private $ls;
+    private $ps;
 
     /**
      * @Route("/jobs", name="job_index")
@@ -73,11 +75,13 @@ class JobController extends AbstractController
             $this->js->update($id, $params);
         }
         $job = $this->js->find($id);
-        $levels = $this->ls->findAll();
         $cities = $this->cs->findAZ('name');
+        $levels = $this->ls->findAll();
+        $platforms = $this->ps->findAZ('name');
         return ['job' => $job,
                 'levels' => $levels,
-                'cities' => $cities];
+                'cities' => $cities,
+                'platforms' => $platforms];
     }
 
     /**
@@ -96,10 +100,12 @@ class JobController extends AbstractController
 
     public function __construct(JobService $js,
                                 CityService $cs,
-                                LevelService $ls)
+                                LevelService $ls,
+                                PlatformService $ps)
     {
         $this->js = $js;
         $this->cs = $cs;
         $this->ls = $ls;
+        $this->ps = $ps;
     }
 }
