@@ -5,7 +5,19 @@
 {% block body_class %}homepage{% endblock %}
 
 {% block content %}
-<div class="cell medium-3"></div>
+<div class="cell medium-3 hide-for-small-only">
+  <div id="slideshow">
+    <div class="slider-hexagon"></div>
+    <i class="fas fa-question" id="slider-icon"></i>
+    <div class="slider-caption">
+      <div id="slider-job-caption">
+      </div>
+      <br>
+      <div id="slider-employer-caption">
+      </div>
+    </div>
+  </div>
+</div>
 <div class="cell medium-9 small-12">
   <div class="grid-x">
     {% for job in jobs %}
@@ -17,7 +29,7 @@
       <div class="cell medium-8 small-9 job">
         <span class="date">{{ job.date|date("d-m-Y") }}</span>
         <h4 class="title">{{ job.level.level }} {{ job.title }}</h4>
-        <p class="description">{{ job.description|raw }}</p>
+        <span class="description">{{ job.description|raw }}</span>
       </div>
       <div class="cell small-3 show-for-small-only"></div>
       <div class="cell medium-2 small-9 align-self-middle">

@@ -23,6 +23,32 @@ $(function() {
     $("#menu").slideToggle(400);
   });
 
+  $("#slideshow").vegas({
+    timer: false,
+    slides: [
+      {% if jobs is defined %}
+        {% for job in jobs %}
+          {
+            src: "{{ asset('assets/images/empty.png') }}",
+            icon: "{{ job.platform.icon }}",
+            job: "{{ job.level.level }} {{ job.title }}",
+            employer: "{{ job.employer.name }}, {{ job.city.name }}"
+          }
+          {% if not loop.last %}, {% endif %}
+        {% endfor %}
+      {% endif %}
+    ],
+    walk: function (index, slideSettings) {
+            $("#slider-icon").attr("class", slideSettings.icon);
+            $("#slider-job-caption").html(slideSettings.job);
+            $("#slider-employer-caption").html(slideSettings.employer);
+            $(".title").fadeTo(200, 0.4);
+            $(".title:eq("+index+")" ).fadeTo(200, 1);
+            $(".goto").fadeTo(200, 0.4);
+            $(".goto:eq("+index+")" ).fadeTo(200, 1);
+    }
+  });
+
   $(".remove").click(function() {
     var deletedRow = $(this).closest("tr");
     var id = deletedRow.attr("id");
@@ -123,7 +149,6 @@ $(function() {
                         .replace( />/g, '&gt;' );
   }
 
-
   var picture_uploader = new ss.SimpleUpload({
         button: $('#upload-picture'),
         url: "{{ path('upload_picture') }}",
@@ -160,39 +185,39 @@ $(function() {
         onError: function() {
           $('#upload-picture .text').html('<i class="fas fa-times"></i> upload<br>mislukt');
         }
-  	});
+  });
 
-    var cv_uploader = new ss.SimpleUpload({
-          button: $('#upload-cv'),
-          url: "{{ path('upload_cv') }}",
-          name: 'uploadcv',
-          multipart: true,
-          responseType: 'json',
-          onSubmit: function() {
-            $('#uploadMsg').html('');
-            $('#upload-cv').html('uploaden...');
-          },
-          onComplete: function( filename, response ) {
-            $('#upload-cv').html('<i class="fas fa-file-upload"></i> Upload CV');
+  var cv_uploader = new ss.SimpleUpload({
+        button: $('#upload-cv'),
+        url: "{{ path('upload_cv') }}",
+        name: 'uploadcv',
+        multipart: true,
+        responseType: 'json',
+        onSubmit: function() {
+          $('#uploadMsg').html('');
+          $('#upload-cv').html('uploaden...');
+        },
+        onComplete: function( filename, response ) {
+          $('#upload-cv').html('<i class="fas fa-file-upload"></i> Upload CV');
 
-            if ( !response ) {
-              $('#uploadMsg').html('Kan bestand niet uploaden');
-              return;
-            }
-            if ( response.success === true ) {
-              $('#uploadMsg').html('<strong>' + escapeTags( filename ) + '</strong><br>' +
-              'Sla je profiel op om dit bestand te gebruiken.');
-              $("#input-cv").val(escapeTags( filename ));
-            } else {
-              if ( response.msg )  {
-                $('#uploadMsg').html(escapeTags( response.msg ));
-              } else {
-                $('#uploadMsg').html('Fout opgetreden, upload mislukt.');
-              }
-            }
-          },
-          onError: function() {
+          if ( !response ) {
             $('#uploadMsg').html('Kan bestand niet uploaden');
+            return;
           }
-    	});
+          if ( response.success === true ) {
+            $('#uploadMsg').html('<strong>' + escapeTags( filename ) + '</strong><br>' +
+            'Sla je profiel op om dit bestand te gebruiken.');
+            $("#input-cv").val(escapeTags( filename ));
+          } else {
+            if ( response.msg )  {
+              $('#uploadMsg').html(escapeTags( response.msg ));
+            } else {
+              $('#uploadMsg').html('Fout opgetreden, upload mislukt.');
+            }
+          }
+        },
+        onError: function() {
+          $('#uploadMsg').html('Kan bestand niet uploaden');
+        }
+  });
 });
