@@ -9,7 +9,7 @@
     <div class="grid-x">
       <div class="cell medium-3 small-12">
         <label>Niveau</label>
-        <select name="level">
+        <select name="level" required>
         {% for level in levels %}
           {% if level == job.level %}
             <option value="{{level.id}}" selected>{{level.level}}</option>
@@ -22,12 +22,12 @@
 
       <div class="cell second-in-row medium-9 small-12">
         <label>Functie</label>
-        <input type="text" name="title" value="{{job.title}}">
+        <input type="text" name="title" value="{{job.title}}" required>
       </div>
 
       <div class="small-12">
         <label>Platform</label>
-        <select name="platform">
+        <select name="platform" required>
         {% for platform in platforms %}
           {% if platform == job.platform %}
             <option value="{{platform.id}}" selected>
@@ -46,7 +46,7 @@
 
       <div class="small-12">
         <label>Plaats</label>
-        <select name="city">
+        <select name="city" required>
         {% for city in cities %}
           {% if city == job.city %}
             <option value="{{city.id}}" selected>{{city.name}}</option>

@@ -1,11 +1,11 @@
 <div class="small-12">
   <label>bedrijfsnaam</label>
-  <input type="text" name="name" value="{{user.name}}">
+  <input type="text" name="name" value="{{user.name}}" required>
 </div>
 
 <div class="small-12">
   <label>email</label>
-  <input type="text" name="email" value="{{user.email}}">
+  <input type="text" name="email" value="{{user.email}}" required>
 </div>
 
 <div class="small-12">
@@ -15,17 +15,17 @@
 
 <div class="small-12">
   <label>adres</label>
-  <input type="text" name="address" value="{{user.address}}">
+  <input type="text" name="address" value="{{user.address}}" required>
 </div>
 
 <div class="cell medium-3 small-12">
   <label>postcode</label>
-  <input type="text" name="postal_code" value="{{user.postalCode}}">
+  <input type="text" name="postal_code" value="{{user.postalCode}}" required>
 </div>
 
 <div class="cell second-in-row medium-9 small-12">
 <label>plaats</label>
-  <select name="city">
+  <select name="city" required>
   {% for city in cities %}
     {% if city == user.city %}
     <option value="{{city.id}}" selected>{{city.name}}</option>
