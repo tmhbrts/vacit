@@ -156,63 +156,63 @@ $(function() {
         multipart: true,
         responseType: 'json',
         onSubmit: function() {
-          $('#upload-picture .text').html('uploaden...');
+          $("#upload-picture .text").html('uploaden...');
         },
         onComplete: function( filename, response ) {
-          $('#upload-picture .text').html('<i class="fas fa-upload"></i>upload<br>afbeelding');
+          $("#upload-picture .text").html('');
           $("#upload-picture .text").css({
             "text-shadow": "0px 0px 3px #000"
           })
 
           if ( !response ) {
-            $('#upload-picture .text').html('<i class="fas fa-times"></i> upload<br>mislukt');
+            $("#upload-picture .text").html('<i class="fas fa-times"></i> upload<br>mislukt');
             return;
           }
           if ( response.success === true ) {
-            $('#upload-picture').css({
+            $("#upload-picture").css({
               "background-image": "url('{{ asset('upload_files') }}/"+ escapeTags( filename ) +"')",
               "background-size": "cover"
             });
             $("#input-picture").val(escapeTags( filename ));
           } else {
             if ( response.msg )  {
-              $('#upload-picture .text').html(escapeTags( response.msg ));
+              $("#upload-picture .text").html(escapeTags( response.msg ));
             } else {
-              $('#upload-picture .text').html('Fout opgetreden, upload mislukt.');
+              $("#upload-picture .text").html('Fout opgetreden, upload mislukt.');
             }
           }
         },
         onError: function() {
-          $('#upload-picture .text').html('<i class="fas fa-times"></i> upload<br>mislukt');
+          $("#upload-picture .text").html('<i class="fas fa-times"></i> upload<br>mislukt');
         }
   });
 
   var cv_uploader = new ss.SimpleUpload({
-        button: $('#upload-cv'),
+        button: $("#upload-cv"),
         url: "{{ path('upload_cv') }}",
         name: 'uploadcv',
         multipart: true,
         responseType: 'json',
         onSubmit: function() {
-          $('#uploadMsg').html('');
-          $('#upload-cv').html('uploaden...');
+          $("#uploadMsg").html('');
+          $("#upload-cv").html('uploaden...');
         },
         onComplete: function( filename, response ) {
-          $('#upload-cv').html('<i class="fas fa-file-upload"></i> Upload CV');
+          $("#upload-cv").html('<i class="fas fa-file-upload"></i> Upload CV');
 
           if ( !response ) {
-            $('#uploadMsg').html('Kan bestand niet uploaden');
+            $("#uploadMsg").html('Kan bestand niet uploaden');
             return;
           }
           if ( response.success === true ) {
-            $('#uploadMsg').html('<strong>' + escapeTags( filename ) + '</strong><br>' +
+            $("#uploadMsg").html('<strong>' + escapeTags( filename ) + '</strong><br>' +
             'Sla je profiel op om dit bestand te gebruiken.');
             $("#input-cv").val(escapeTags( filename ));
           } else {
             if ( response.msg )  {
-              $('#uploadMsg').html(escapeTags( response.msg ));
+              $("#uploadMsg").html(escapeTags( response.msg ));
             } else {
-              $('#uploadMsg').html('Fout opgetreden, upload mislukt.');
+              $("#uploadMsg").html('Fout opgetreden, upload mislukt.');
             }
           }
         },
@@ -220,4 +220,5 @@ $(function() {
           $('#uploadMsg').html('Kan bestand niet uploaden');
         }
   });
+
 });

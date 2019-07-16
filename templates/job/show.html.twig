@@ -30,7 +30,12 @@
       <br>
     {% endif %}
 
-    <h4>Meer vacatures van <em>{{job.employer.name}}</em></h4>
+    <h4>
+      Meer vacatures van
+      <a href="{{ path('show_employer', { 'id': job.employer.id }) }}">
+        {{job.employer.name}}
+      </a>
+    </h4>
     <table id="employer-jobs" class="display" style="width:100%">
       <thead>
         <tr>
