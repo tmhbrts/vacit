@@ -8,15 +8,22 @@ use App\Service\CityService;
 
 class UserService
 {
-    private $um;
-    private $encoder;
-    private $cs;
+    private $um; //to contain autowired UserManagerInterface
+    private $encoder; //to contain autowired UserPasswordEncoderInterface
+    private $cs; //to contain autowired CityService
 
+    /* -------------------------------------------------------------------------
+    return User object returned by UserManagerInterface's findUserBy function,
+    given $id.
+    ------------------------------------------------------------------------- */
     public function find($id)
     {
       return $this->um->findUserBy(['id'=>$id]);
     }
 
+    /* -------------------------------------------------------------------------
+    update given $user, given $params
+    ------------------------------------------------------------------------- */
     public function updateProfile($user, $params)
     {
         if(isset($params["picture_filename"])) {
@@ -40,8 +47,13 @@ class UserService
         }
 
         $this->um->updateUser($user);
+        return $user;
     }
 
+    /* -------------------------------------------------------------------------
+    check if user already exists, given $params["email"]. if not, return updated
+    user returned by UserManagerInterface's updateUser function, given $params.
+    ------------------------------------------------------------------------- */
     public function createEmployer($params)
     {
         $u = $this->um->findUserByEmail($params["email"]);
@@ -66,12 +78,15 @@ class UserService
             $user->setBio($params["bio"]);
 
             $this->um->updateUser($user);
-            return($user);
+            return $user;
         } else {
             return("user already exists...");
         }
     }
 
+    /* -------------------------------------------------------------------------
+    autowire UserManagerInterface, UserPasswordEncoderInterface and CityService.
+    ------------------------------------------------------------------------- */
     public function __construct(UserManagerInterface $um,
                                 UserPasswordEncoderInterface $encoder,
                                 CityService $cs)

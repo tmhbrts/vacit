@@ -14,8 +14,11 @@ use App\Service\JobService;
  */
 class HomepageController extends AbstractController
 {
-    private $js;
+    private $js; //to contain autowired JobService
 
+    /* -------------------------------------------------------------------------
+    get latest 5 jobs. render 'index.html.twig'.
+    ------------------------------------------------------------------------- */
     /**
      * @Route("/", name="homepage")
      * @Template()
@@ -26,6 +29,9 @@ class HomepageController extends AbstractController
         return ['jobs' => $jobs];
     }
 
+    /* -------------------------------------------------------------------------
+    autowire JobService.
+    ------------------------------------------------------------------------- */
     public function __construct(JobService $js)
     {
         $this->js = $js;

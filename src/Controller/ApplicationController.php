@@ -12,9 +12,12 @@ use App\Service\ApplicationService;
 
 class ApplicationController extends AbstractController
 {
-    private $as;
-    private $user;
+    private $as; //to contain autowired ApplicationService
 
+    /* -------------------------------------------------------------------------
+    create application, given current user and value of 'id' from Request $post.
+    render template '/apply.html.twig'.
+    ------------------------------------------------------------------------- */
     /**
      * @Route("/apply", name="apply")
      * @Template()
@@ -31,18 +34,25 @@ class ApplicationController extends AbstractController
         }
     }
 
+    /* -------------------------------------------------------------------------
+    get applications from current user. render template
+    'my_applications.html.twig'.
+    ------------------------------------------------------------------------- */
     /**
      * @Route("/my-applications", name="my_applications")
      * @Template()
      */
     public function myApplications()
     {
-        $this->denyAccessUnlessGranted('ROLE_CANDIDATE', null, 'Niet toegestaan');
         $user = $this->getUser();
         $applications = $user->getApplications();
         return ['applications' => $applications];
     }
 
+    /* -------------------------------------------------------------------------
+    routing is used for ajax request. remove application, given value of 'id'
+    from Request $post. render template 'remove.html.twig'.
+    ------------------------------------------------------------------------- */
     /**
      * @Route("/remove-application", name="remove_application")
      * @Template()
@@ -54,17 +64,24 @@ class ApplicationController extends AbstractController
         return ['id' => $id];
     }
 
+    /* -------------------------------------------------------------------------
+    get applications from job with $id specified in routing. render template
+    'job_applications.html.twig'.
+    ------------------------------------------------------------------------- */
     /**
      * @Route("job-applications/{id<\d+>}", name="job_applications")
      * @Template()
      */
     public function jobApplications($id)
     {
-        $this->denyAccessUnlessGranted('ROLE_EMPLOYER', null, 'Niet toegestaan');
         $applications = $this->as->getApplicationsForJob($id);
         return ['applications' => $applications];
     }
 
+    /* -------------------------------------------------------------------------
+    routing is used for ajax request. set invitation for application, given
+    value of 'id' from Request $post. render template 'invite.html.twig'
+    ------------------------------------------------------------------------- */
     /**
      * @Route("/invite", name="invite")
      * @Template()
@@ -80,7 +97,9 @@ class ApplicationController extends AbstractController
         }
     }
 
-
+    /* -------------------------------------------------------------------------
+    autowire ApplicationService
+    ------------------------------------------------------------------------- */
     public function __construct(ApplicationService $as)
     {
         $this->as = $as;

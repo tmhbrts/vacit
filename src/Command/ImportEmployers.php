@@ -16,14 +16,12 @@ use App\Service\UserService;
 
 class ImportEmployers extends Command
 {
-    private $us;
+    private $us; //to contain autowired UserService
 
-    public function __construct(UserService $us)
-    {
-        parent::__construct();
-        $this->us = $us;
-    }
-
+    /* -------------------------------------------------------------------------
+    set the configuration for the command.
+    the argument 'file' becomes the path of the spreadsheet to be imported.
+    ------------------------------------------------------------------------- */
     protected function configure()
     {
         $this
@@ -33,6 +31,11 @@ class ImportEmployers extends Command
           ->addArgument('file', InputArgument::REQUIRED, 'File location');
     }
 
+    /* -------------------------------------------------------------------------
+    read the given spreadsheet. create variable $params based on the indexes on
+    the first row of the spreadsheet. create employer, giving $params as
+    argument
+    ------------------------------------------------------------------------- */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $output->writeln([
@@ -69,6 +72,15 @@ class ImportEmployers extends Command
           $output->writeln('===============');
           $employer = $this->us->createEmployer($params);
         }
+    }
+
+    /* -------------------------------------------------------------------------
+    autowire UserService. construct parent.
+    ------------------------------------------------------------------------- */
+    public function __construct(UserService $us)
+    {
+        parent::__construct();
+        $this->us = $us;
     }
 }
 

@@ -9,8 +9,12 @@ use App\Service\JobService;
 
 class ApplicationService extends EntityService
 {
-    private $js;
+    private $js; //to contain autowired JobService
 
+    /* -------------------------------------------------------------------------
+    get Job object, given $id. create new Application, given User object $candidate and
+    found Job. return created Application object.
+    ------------------------------------------------------------------------- */
     public function applyForJob($id, $candidate)
     {
         $job = $this->js->find($id);
@@ -18,6 +22,10 @@ class ApplicationService extends EntityService
         return $application;
     }
 
+    /* -------------------------------------------------------------------------
+    get Job object, given $id. get found Job's applications. return found
+    Applications.
+    ------------------------------------------------------------------------- */
     public function getApplicationsForJob($id)
     {
         $job = $this->js->find($id);
@@ -25,6 +33,10 @@ class ApplicationService extends EntityService
         return $applications;
     }
 
+    /* -------------------------------------------------------------------------
+    find Application object, given $id. set the invitation status of found
+    Application object to true.
+    ------------------------------------------------------------------------- */
     public function setInvitation($id)
     {
         $application = $this->find($id);
@@ -32,6 +44,10 @@ class ApplicationService extends EntityService
         return $application;
     }
 
+    /* -------------------------------------------------------------------------
+    find Application object, given $id. return true if found Apllication
+    object's andidate is equal to given $candidate.
+    ------------------------------------------------------------------------- */
     public function checkOwnership($id, $candidate)
     {
         $application = $this->find($id);
@@ -43,6 +59,10 @@ class ApplicationService extends EntityService
         }
     }
 
+    /* -------------------------------------------------------------------------
+    autowire EntityManagerInterface and JobService. construct parent
+    (EntityService) giving $em and the Entity 'Application' as arguments.
+    ------------------------------------------------------------------------- */
     public function __construct(EntityManagerInterface $em,
                                 JobService $js)
     {

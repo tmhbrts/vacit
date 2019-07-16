@@ -8,6 +8,10 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class ApplicationRepository extends ServiceEntityRepository
 {
+    /* -------------------------------------------------------------------------
+    create new Application, given $job and $candidate, return new Application
+    object
+    ------------------------------------------------------------------------- */
     public function create($job, $candidate)
     {
         $exists = $this->findBy(['job' => $job,
@@ -27,6 +31,10 @@ class ApplicationRepository extends ServiceEntityRepository
         }
     }
 
+    /* -------------------------------------------------------------------------
+    set variable 'invitation' of given Application object to true. return
+    updated Application object.
+    ------------------------------------------------------------------------- */
     public function setInvitation($application)
     {
         $application->setInvitation(true);

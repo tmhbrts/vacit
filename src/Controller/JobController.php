@@ -15,11 +15,14 @@ use App\Service\PlatformService;
 
 class JobController extends AbstractController
 {
-    private $js;
-    private $cs;
-    private $ls;
-    private $ps;
+    private $js; //to contain autowired JobService
+    private $cs; //to contain autowired CityService
+    private $ls; //to contain autowired LevelService
+    private $ps; //to contain autowired PlatformService
 
+    /* -------------------------------------------------------------------------
+    find all jobs. render template 'index.html.twig'
+    ------------------------------------------------------------------------- */
     /**
      * @Route("/jobs", name="job_index")
      * @Template()
@@ -30,6 +33,9 @@ class JobController extends AbstractController
         return ['jobs' => $jobs];
     }
 
+    /* -------------------------------------------------------------------------
+    get job with $id specified in routing. render template 'show.html.twig'.
+    ------------------------------------------------------------------------- */
     /**
      * @Route("job/{id<\d+>}", name="job_show")
      * @Template()
@@ -40,6 +46,9 @@ class JobController extends AbstractController
         return ['job' => $job];
     }
 
+    /* -------------------------------------------------------------------------
+    get jobs of current user. render template 'my_jobs.html.twig'.
+    ------------------------------------------------------------------------- */
     /**
      * @Route("/my-jobs", name="my_jobs")
      * @Template()
@@ -51,6 +60,10 @@ class JobController extends AbstractController
         return ['jobs' => $jobs];
     }
 
+    /* -------------------------------------------------------------------------
+    create new empty job, given current user. redirect to routing "edit_job" for
+    new job id.
+    ------------------------------------------------------------------------- */
     /**
      * @Route("/job/new", name="new_job")
      * @Template()
@@ -63,6 +76,11 @@ class JobController extends AbstractController
         return $this->redirectToRoute('edit_job', ['id' => $id]);
     }
 
+    /* -------------------------------------------------------------------------
+    get $params from Request $post. if set, update job with $id specified in
+    routing, given $params. get job with $id specified in routing. render
+    template 'edit.html.tiwig'.
+    ------------------------------------------------------------------------- */
     /**
      * @Route("job/{id<\d+>}/edit", name="edit_job")
      * @Template()
@@ -84,6 +102,10 @@ class JobController extends AbstractController
                 'platforms' => $platforms];
     }
 
+    /* -------------------------------------------------------------------------
+    routing is used for ajax request. remove job, given value of 'id'
+    from Request $post. render template 'remove.html.twig'.
+    ------------------------------------------------------------------------- */
     /**
      * @Route("/remove-job", name="remove_job")
      * @Template()
@@ -98,6 +120,9 @@ class JobController extends AbstractController
         }
     }
 
+    /* -------------------------------------------------------------------------
+    autowire Services
+    ------------------------------------------------------------------------- */
     public function __construct(JobService $js,
                                 CityService $cs,
                                 LevelService $ls,

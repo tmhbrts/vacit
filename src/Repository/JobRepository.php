@@ -14,6 +14,9 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class JobRepository extends ServiceEntityRepository
 {
+    /* -------------------------------------------------------------------------
+    update given Job entity, given $params. return updated Job object.
+    ------------------------------------------------------------------------- */
     public function update($job, $params)
     {
         $job->setTitle($params["title"]);
@@ -29,6 +32,9 @@ class JobRepository extends ServiceEntityRepository
         return $job;
     }
 
+    /* -------------------------------------------------------------------------
+    create new Job entity, given User object $employer. return new Job object.
+    ------------------------------------------------------------------------- */
     public function create($employer)
     {
         $job = new Job();

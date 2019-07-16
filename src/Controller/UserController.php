@@ -17,6 +17,10 @@ class UserController extends AbstractController
     private $us;
     private $cs;
 
+    /* -------------------------------------------------------------------------
+    find user with $id specified in routing. render template
+    'show_candidate.html.twig'
+    ------------------------------------------------------------------------- */
     /**
      * @Route("/candidate/{id<\d+>}", name="show_candidate")
      * @Template()
@@ -27,6 +31,10 @@ class UserController extends AbstractController
         return ['user' => $candidate];
     }
 
+    /* -------------------------------------------------------------------------
+    find user with $id specified in routing . render template
+    'show_employer.html.twig'.
+    ------------------------------------------------------------------------- */
     /**
      * @Route("/employer/{id<\d+>}", name="show_employer")
      * @Template()
@@ -37,6 +45,11 @@ class UserController extends AbstractController
         return ['user' => $employer];
     }
 
+    /* -------------------------------------------------------------------------
+    get current user. get all cities in alphabetical order. get $params from
+    Request $post. if set, update current user, given $params. render template
+    'edit_profile.html.twig'
+    ------------------------------------------------------------------------- */
     /**
      * @Route("/edit-profile", name="edit_profile")
      * @Template()
@@ -47,13 +60,17 @@ class UserController extends AbstractController
         $cities = $this->cs->findAZ('name');
         $params = $post->request->all();
         if(!empty($params)) {
-            $this->us->updateProfile($user, $params);
+          $user = $this->us->updateProfile($user, $params);
         }
         return ['user' => $user,
                 'params' => $params,
                 'cities' => $cities];
     }
 
+    /* -------------------------------------------------------------------------
+    routing used for simple ajax uploader. place chosen picture in upload
+    folder. return JSON response.
+    ------------------------------------------------------------------------- */
     /**
      * @Route("/upload-picture", name="upload_picture")
      */
@@ -73,6 +90,10 @@ class UserController extends AbstractController
       }
     }
 
+    /* -------------------------------------------------------------------------
+    routing used for simple ajax uploader. place chosen file in upload folder.
+    return JSON response.
+    ------------------------------------------------------------------------- */
     /**
      * @Route("/upload-cv", name="upload_cv")
      */
@@ -92,6 +113,9 @@ class UserController extends AbstractController
       }
     }
 
+    /* -------------------------------------------------------------------------
+    autowire Services.
+    ------------------------------------------------------------------------- */
     public function __construct(UserService $us,
                                 CityService $cs)
     {
